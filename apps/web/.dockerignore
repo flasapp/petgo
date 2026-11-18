@@ -1,0 +1,8 @@
+.env
+.env.*
+.petgo-local/
+node_modules/
+test/
+README.md
+package-lock.json
+.DS_Store

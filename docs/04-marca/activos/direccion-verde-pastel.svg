@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1020" role="img" aria-labelledby="title desc">
+  <title id="title">Muestra de estilo verde pastel para la marca de traslado de mascotas</title>
+  <desc id="desc">Muestra conceptual con navegación blanca redondeada, fondo verde claro, titular oscuro redondeado, botón verde, espacio reservado para fotografía propia, tarjetas pastel y colores de la paleta.</desc>
+  <style>
+    .round { font-family: "Arial Rounded MT Bold", "Arial Rounded Bold", "Trebuchet MS", sans-serif; }
+    .body { font-family: "Avenir Next", "Nunito Sans", Arial, sans-serif; }
+    .small { font-size: 16px; font-weight: 700; }
+    .nav { font-size: 19px; font-weight: 700; }
+    .title { font-size: 72px; font-weight: 800; letter-spacing: -2px; }
+    .cardtitle { font-size: 27px; font-weight: 800; }
+    .caption { font-size: 17px; }
+    .swatch { font-size: 14px; font-weight: 700; }
+  </style>
+
+  <rect width="1360" height="1020" fill="#FAFCF8"/>
+  <rect x="38" y="38" width="1284" height="536" rx="36" fill="#E5F6EB"/>
+
+  <rect x="70" y="66" width="1220" height="70" rx="35" fill="#FFFFFF"/>
+  <circle cx="118" cy="101" r="21" fill="#9CE6BD"/>
+  <path d="M106 102 C112 88 125 93 129 103 C127 112 116 117 109 109" fill="none" stroke="#27664B" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="106" cy="102" r="3" fill="#27664B"/>
+  <circle cx="129" cy="103" r="3" fill="#27664B"/>
+  <text x="151" y="109" class="round nav" fill="#243A31">Tu marca</text>
+  <text x="861" y="108" class="body small" fill="#243A31">Servicios</text>
+  <text x="980" y="108" class="body small" fill="#243A31">Cómo funciona</text>
+  <text x="1165" y="108" class="body small" fill="#243A31">Contacto</text>
+
+  <text x="92" y="257" class="round title" fill="#243A31">Traslados de</text>
+  <text x="92" y="339" class="round title" fill="#27664B">mascotas</text>
+  <text x="92" y="421" class="round title" fill="#243A31">con cercanía</text>
+  <text x="95" y="466" class="body caption" fill="#243A31">Montevideo y viajes al interior · texto ilustrativo</text>
+  <rect x="92" y="490" width="221" height="56" rx="17" fill="#27664B"/>
+  <text x="114" y="525" class="body nav" fill="#FFFFFF">Consultar un viaje</text>
+
+  <rect x="782" y="176" width="458" height="367" rx="26" fill="#9CE6BD"/>
+  <rect x="813" y="205" width="396" height="309" rx="19" fill="#D3F0DE" stroke="#27664B" stroke-width="2" stroke-dasharray="9 9"/>
+  <text x="1011" y="334" class="round cardtitle" fill="#243A31" text-anchor="middle">Fotografía propia</text>
+  <text x="1011" y="371" class="body caption" fill="#243A31" text-anchor="middle">Conductor · Fiat Strada · mascotas</text>
+  <text x="1011" y="400" class="body caption" fill="#243A31" text-anchor="middle">cuando estén disponibles</text>
+
+  <text x="48" y="631" class="round" font-size="37" fill="#243A31">Un sitio claro, cálido y con personalidad</text>
+
+  <g>
+    <rect x="48" y="666" width="398" height="235" rx="20" fill="#E5F6EB"/>
+    <rect x="48" y="666" width="398" height="104" rx="20" fill="#C9EDD8"/>
+    <path d="M48 754 C120 735 165 769 247 750 C335 731 380 766 446 747 L446 793 L48 793 Z" fill="#E5F6EB"/>
+    <text x="247" y="726" class="body small" fill="#27664B" text-anchor="middle">Foto real o dato verificado</text>
+    <text x="76" y="827" class="round cardtitle" fill="#243A31">Servicios</text>
+    <text x="76" y="864" class="body caption" fill="#243A31">Tarjetas amables y fáciles de leer.</text>
+  </g>
+  <g>
+    <rect x="481" y="666" width="398" height="235" rx="20" fill="#FAE7B1"/>
+    <rect x="481" y="666" width="398" height="104" rx="20" fill="#F7DCA2"/>
+    <path d="M481 750 C550 766 615 731 684 750 C757 770 822 735 879 752 L879 793 L481 793 Z" fill="#FAE7B1"/>
+    <text x="680" y="726" class="body small" fill="#6F5634" text-anchor="middle">Foto real o dato verificado</text>
+    <text x="509" y="827" class="round cardtitle" fill="#243A31">Cómo funciona</text>
+    <text x="509" y="864" class="body caption" fill="#243A31">Pasos simples y bien explicados.</text>
+  </g>
+  <g>
+    <rect x="914" y="666" width="398" height="235" rx="20" fill="#E6E2FA"/>
+    <rect x="914" y="666" width="398" height="104" rx="20" fill="#D7D0F3"/>
+    <path d="M914 751 C984 733 1042 764 1115 751 C1192 735 1250 766 1312 751 L1312 793 L914 793 Z" fill="#E6E2FA"/>
+    <text x="1113" y="726" class="body small" fill="#514E7E" text-anchor="middle">Foto real o dato verificado</text>
+    <text x="942" y="827" class="round cardtitle" fill="#243A31">Contacto</text>
+    <text x="942" y="864" class="body caption" fill="#243A31">Una acción principal por bloque.</text>
+  </g>
+
+  <g class="body swatch" fill="#243A31">
+    <circle cx="100" cy="958" r="25" fill="#9CE6BD"/>
+    <text x="138" y="964">#9CE6BD</text>
+    <circle cx="309" cy="958" r="25" fill="#27664B"/>
+    <text x="347" y="964">#27664B</text>
+    <circle cx="518" cy="958" r="25" fill="#243A31"/>
+    <text x="556" y="964">#243A31</text>
+    <circle cx="727" cy="958" r="25" fill="#F8C6AD"/>
+    <text x="765" y="964">#F8C6AD</text>
+    <circle cx="936" cy="958" r="25" fill="#FAE7B1"/>
+    <text x="974" y="964">#FAE7B1</text>
+    <circle cx="1145" cy="958" r="25" fill="#E6E2FA"/>
+    <text x="1183" y="964">#E6E2FA</text>
+  </g>
+</svg>

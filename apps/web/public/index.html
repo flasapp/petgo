@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es-UY">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e5f6eb" />
+    <meta name="description" content="¿Tenés que llevar a tu mascota a la veterinaria o a otro lugar? En PetGo hacemos traslados seguros por Montevideo, con personas que aman a los animales." />
+    <title>PetGo · Traslados de mascotas en Montevideo</title>
+    <link rel="icon" type="image/png" href="assets/petgo-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="vendor/flatpickr/flatpickr.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <script src="vendor/flatpickr/flatpickr.min.js" defer></script>
+    <script src="vendor/flatpickr/es.js" defer></script>
+    <script src="trip-form.js" defer></script>
+    <script src="route-animation.js" defer></script>
+  </head>
+  <body data-whatsapp-number="__WHATSAPP_NUMBER__" data-check-is-human="__CHECK_IS_HUMAN__" data-turnstile-site-key="__TURNSTILE_SITE_KEY__">
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
+    <header class="site-header" id="inicio">
+      <div class="header-inner wrap">
+        <a class="brand" href="#inicio" aria-label="PetGo · volver al inicio">
+          <img class="brand-logo" src="assets/petgo-horizontal.png" alt="PetGo" width="720" height="205" />
+        </a>
+        <nav class="desktop-nav" aria-label="Navegación principal">
+          <a href="#viajes">Viajes</a>
+          <a href="#cuidado">Nuestro cuidado</a>
+          <a href="#proceso">Cómo funciona</a>
+          <a href="#preguntas">Preguntas</a>
+        </nav>
+        <button class="button button-small desktop-contact" type="button" data-whatsapp>Consultar por WhatsApp</button>
+        <details class="mobile-menu">
+          <summary aria-label="Menú"><span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span></summary>
+          <nav aria-label="Navegación móvil">
+            <a href="#viajes">Viajes</a>
+            <a href="#cuidado">Nuestro cuidado</a>
+            <a href="#proceso">Cómo funciona</a>
+            <a href="#preguntas">Preguntas</a>
+            <a href="#contacto">Contacto</a>
+            <button type="button" data-whatsapp>Consultar por WhatsApp</button>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Traslados seguros <span>para tus mascotas.</span></h1>
+          <p>¿Tenés que llevar a tu peque a la veterinaria o a otro lugar? Contanos el viaje y nos encargamos de trasladarlo con cuidado, seguridad y las cosas claras desde el principio.</p>
+          <button class="button button-large" type="button" data-trip-open>Cotizar viaje</button>
+          <div class="hero-facts" aria-label="Datos principales del servicio">
+            <span>Viajes por Montevideo</span>
+            <span>Hasta 2 perros y 2 gatos</span>
+            <span>Consultanos por el interior</span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-art-spot" aria-hidden="true"></div>
+          <img src="assets/perro-gato-conceptual.png" alt="Imagen conceptual de un perro y un gato juntos" width="1199" height="1312" />
+          <div class="hero-art-note">Imagen ilustrativa · pendiente de fotos propias</div>
+        </div>
+      </section>
+
+      <section class="section journeys wrap" id="viajes" aria-labelledby="journeys-title">
+        <div class="route-feature" data-route-feature>
+          <div class="route-pin" data-route-pin>
+          <div class="section-head">
+            <h2 id="journeys-title"><span class="title-dark">Para empezar,</span> <span>contanos tres cosas.</span></h2>
+          </div>
+          <div class="route-stage" data-route-stage>
+            <svg class="route-map" viewBox="0 0 1000 460" role="img" aria-labelledby="route-title route-description">
+              <title id="route-title">La camioneta recorre el camino entre origen y destino</title>
+              <desc id="route-description">Escena ilustrativa: un perro sonriente en primer plano se superpone a la cúpula de una camioneta gris. Ambos avanzan juntos de Origen a Destino mientras bajás por la página. Durante el recorrido aparecen tres preguntas: desde dónde salís, cuántas mascotas viajan y hacia dónde vas.</desc>
+              <rect width="1000" height="700" fill="#caecd8"/>
+              <path d="M0 36C169 71 242 8 402 39c148 29 226 0 381 1 91 0 153 32 217 20V0H0Z" fill="#ddf4e6"/>
+              <path d="M0 404c142-63 263-58 381-18 147 51 288-34 409-13 101 18 138 71 210 70v257H0Z" fill="#b7e3c8"/>
+              <path d="M0 455c131-26 221-8 332 35 143 55 249 10 353-21 118-35 205-28 315 18v213H0Z" fill="#a8dabb" opacity=".5"/>
+              <path d="M49 103c118 23 171-16 260-16m476 236c67-17 107-15 164 9M35 449c79-33 139-28 199-10" stroke="#f3fff7" stroke-width="2" opacity=".65" fill="none" stroke-linecap="round"/>
+              <path class="route-road" data-route-road="" d="M165 310C280 265 330 255 430 262S610 290 685 245 775 190 835 160" fill="none" stroke="#eff9ee" stroke-width="33" stroke-linecap="round"/>
+              <path class="route-base" data-route-path="" d="M165 310C280 265 330 255 430 262S610 290 685 245 775 190 835 160" fill="none" stroke="#27664B" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 18" opacity=".8"/>
+              <path class="route-trail" data-route-trail="" d="M165 310C280 265 330 255 430 262S610 290 685 245 775 190 835 160" fill="none" stroke="#27664B" stroke-width="5" stroke-linecap="round" opacity="0"/>
+              <g class="route-marker" data-route-start="" transform="translate(175 312)">
+                <circle r="30" fill="#205f45"/><circle r="20" fill="none" stroke="#dff7e8" stroke-width="2" opacity=".8"/>
+                <path d="m-11 2 11-10L11 2v11H-11Z" fill="#f8fff9"/><path d="M-3 13V4h6v9" stroke="#205f45" stroke-width="2"/>
+                <rect x="-42" y="45" width="84" height="32" rx="16" fill="#f9fff9"/><text x="0" y="66" text-anchor="middle">Origen</text>
+              </g>
+              <g class="route-marker route-marker-end" data-route-end="" transform="translate(825 132)">
+                <circle class="arrival-ring" r="39" fill="none" stroke="#27664B" stroke-width="3" opacity=".23"/>
+                <circle r="30" fill="#205f45"/><circle r="20" fill="none" stroke="#dff7e8" stroke-width="2" opacity=".8"/>
+                <path d="M-8-8v21M-7-7H10L5 0l5 7H-7" stroke="#f8fff9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="19" y="-104" width="92" height="32" rx="16" fill="#f9fff9"/><text x="65" y="-83" text-anchor="middle">Destino</text>
+              </g>
+              <g class="route-midpoint" data-route-midpoint="" transform="translate(500 245)"><circle r="13" fill="#f8c6ad" stroke="#fff7ee" stroke-width="5"/></g>
+              <g class="route-vehicle" data-route-vehicle="" transform="translate(165 310) scale(.69)">
+                <ellipse cx="0" cy="1" rx="71" ry="5" fill="#205f45" opacity=".16"/>
+                <image class="route-vehicle-truck" href="assets/camioneta-base.png" x="-91" y="-78" width="182" height="78" preserveAspectRatio="xMidYMid meet"/>
+                <image class="route-vehicle-dog" href="assets/perro-sonriente-recorte.png" x="-108" y="-132" width="120" height="102" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+            </svg>
+            <div class="route-bubble" data-route-bubble aria-hidden="true">¿Desde dónde salen?</div>
+            <span class="route-scene-note">Recorrido ilustrativo</span>
+          </div>
+          <div class="route-controls">
+            <p data-route-status aria-live="polite" aria-atomic="true"><span>Contanos desde dónde salen tus mascotas.</span></p>
+            <button class="route-replay" type="button" data-route-replay hidden>Repetir recorrido</button>
+          </div>
+          </div>
+        </div>
+        <div class="journey-grid">
+          <article class="journey-card journey-primary">
+            <div class="journey-content"><h3>Montevideo</h3><p>Viajes y traslados dentro de Montevideo.</p><button class="text-action" type="button" data-trip-open>Cotizar viaje</button></div>
+          </article>
+          <article class="journey-card journey-secondary">
+            <div class="journey-content"><h3>Interior</h3><p>Viajes y traslados en todo el país.</p><button class="text-action" type="button" data-trip-open>Cotizar viaje</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="vehicle-section" id="cuidado" aria-labelledby="vehicle-title">
+        <div class="vehicle-grid wrap">
+          <div class="vehicle-copy">
+            <h2 id="vehicle-title">Van con personas que <span>aman a los animales.</span></h2>
+            <p>Queremos que viajen seguros y bien cuidados. Preparamos el espacio para cada mascota y podemos llevar hasta 2 perros y 2 gatos en un mismo viaje.</p>
+            <div class="vehicle-lines">
+              <p><strong>Perros</strong><br />Los perros viajan seguros en un canil cerrado dentro de la cúpula, con ventilación.</p>
+              <p><strong>Gatos</strong><br />Cada gato viaja en su transportín, sujeto con el cinturón de seguridad en el asiento trasero de la camioneta. El dueño debe proporcionar el transportín.</p>
+            </div>
+          </div>
+          <div class="photo-collection" aria-label="Imágenes del vehículo y espacio para una próxima foto">
+            <figure class="vehicle-photo photo-main">
+              <img src="assets/vehiculo-petgo-editado.jpg" alt="Camioneta de PetGo vista de costado y desde atrás" width="1672" height="941" loading="lazy" />
+              <figcaption>Nuestra camioneta</figcaption>
+            </figure>
+            <figure class="vehicle-photo photo-detail">
+              <img src="assets/espacio-preparado-con-perro-conceptual.jpg" alt="Imagen generada: desde atrás, la camioneta con la caja abierta; un perro mediano descansa sobre un colchoncito dentro de un canil negro, con una ventana lateral entreabierta" width="1200" height="800" loading="lazy" />
+              <figcaption>Espacio preparado</figcaption>
+            </figure>
+            <div class="photo-placeholder photo-detail"><span>Personas detrás del viaje</span><small>Imagen propia pendiente</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process wrap" id="proceso" aria-labelledby="process-title">
+        <div class="section-head centered">
+          <h2 id="process-title">Así coordinamos <span>tu viaje.</span></h2>
+        </div>
+        <ol class="steps">
+          <li><span class="step-number">1</span><h3>Enviás tu consulta</h3><p>Completás los datos del viaje y enviás el mensaje por WhatsApp.</p></li>
+          <li><span class="step-number">2</span><h3>Revisamos tu pedido</h3><p>Vemos si podemos hacer el traslado y te pasamos el precio.</p></li>
+          <li><span class="step-number">3</span><h3>Acordamos cómo seguir</h3><p>Si te sirve, coordinamos los detalles del viaje.</p></li>
+        </ol>
+        <p class="draft-note">La consulta no confirma el traslado.</p>
+      </section>
+
+      <section class="coverage-section" aria-labelledby="coverage-title">
+        <div class="coverage-inner wrap">
+          <h2 id="coverage-title">Nos movemos por Montevideo. <span>¿Necesitás ir al interior?</span></h2>
+          <p>Decinos de dónde salen y a dónde van. Te contamos si podemos hacer ese viaje.</p>
+          <button class="button button-large" type="button" data-whatsapp>Consultar por WhatsApp</button>
+        </div>
+      </section>
+
+      <section class="section faq wrap" id="preguntas" aria-labelledby="faq-title">
+        <div class="section-head centered">
+          <h2 id="faq-title">Información del <span>viaje</span></h2>
+          <p>Cómo viajan, qué necesitás preparar y cómo consultar un traslado.</p>
+        </div>
+        <div class="faq-grid">
+          <details><summary>¿Cuántas mascotas pueden viajar?<span class="plus-icon" aria-hidden="true"></span></summary><p>Podemos llevar hasta 2 perros y 2 gatos en un mismo viaje. Decinos cuántos viajan para preparar el espacio de cada uno.</p></details>
+          <details><summary>¿Cómo viajan los perros y los gatos?<span class="plus-icon" aria-hidden="true"></span></summary><p>Los perros viajan en caniles separados y cerrados dentro de la cúpula, con ventilación. Cada gato viaja en su propio transportín, sujeto con el cinturón de seguridad en el asiento trasero. Tenés que traer el transportín de tu gato.</p></details>
+          <details><summary>¿A dónde pueden viajar?<span class="plus-icon" aria-hidden="true"></span></summary><p>Hacemos traslados dentro de Montevideo y podés consultarnos por viajes al interior de Uruguay. Pasanos el origen, el destino, la fecha y la hora para confirmar si podemos hacer ese recorrido.</p></details>
+          <details><summary>¿La cantidad de mascotas cambia el precio?<span class="plus-icon" aria-hidden="true"></span></summary><p>No. Dentro del cupo de hasta 2 perros y 2 gatos, la cantidad no cambia el precio. Contanos los datos del viaje por WhatsApp y te informamos la disponibilidad y el precio antes de coordinarlo.</p></details>
+        </div>
+      </section>
+
+      <section class="contact-section wrap" id="contacto" aria-labelledby="contact-title">
+        <div>
+          <h2 id="contact-title">¿Dónde quieres ir con tu peque?</h2>
+          <p>Contanos sobre el viaje y coordinamos.</p>
+          <div class="contact-actions">
+            <button class="button button-light" type="button" data-trip-open>Cotizar viaje</button>
+            <button class="button button-contact-outline" type="button" data-whatsapp>Consultar por WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer wrap">
+      <p><img class="footer-logo" src="assets/petgo-horizontal.png" alt="PetGo" width="720" height="205" /><br />Traslados de mascotas · Montevideo, Uruguay</p>
+      <nav aria-label="Enlaces del pie"><a href="#inicio">Inicio</a><a href="#viajes">Viajes</a><a href="#preguntas">Preguntas</a></nav>
+      <div class="footer-socials" role="group" aria-label="Canales de contacto; enlaces pendientes">
+        <span class="footer-social-icon" role="img" aria-label="Instagram" title="Instagram: enlace pendiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+        <span class="footer-social-icon" role="img" aria-label="WhatsApp" title="WhatsApp: enlace pendiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.3 11.7a8.3 8.3 0 0 1-12.2 7.3L3 20l1-5a8.3 8.3 0 1 1 16.3-3.3Z"/><path d="M8.5 8.4c.2-.4.5-.4.8-.4h.5l1 2.1-.6.8c.7 1.2 1.8 2.2 3 2.8l.8-.7 2.1 1c0 .6-.4 1.4-1.1 1.7-1.1.5-2.3 0-3.7-.8a10.5 10.5 0 0 1-3.5-3.4c-.9-1.4-1.1-2.6-.3-3.1Z"/></svg></span>
+        <span class="footer-social-icon" role="img" aria-label="Correo electrónico" title="Correo: enlace pendiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span>
+      </div>
+    </footer>
+
+    <dialog class="trip-dialog" id="trip-dialog" aria-labelledby="trip-dialog-title">
+      <div class="trip-dialog-head">
+        <div>
+          <h2 id="trip-dialog-title">Contanos el viaje</h2>
+          <p>Hasta 2 perros y 2 gatos están incluidos en el viaje.</p>
+        </div>
+        <button class="dialog-close" type="button" data-trip-close aria-label="Cerrar formulario"><span aria-hidden="true"></span></button>
+      </div>
+
+      <form id="trip-form" class="trip-form" novalidate>
+        <div class="trip-human-check" data-human-check>
+          <div>
+            <strong>Antes de buscar direcciones</strong>
+            <p>Verificá que sos una persona para cuidar las consultas del mapa.</p>
+          </div>
+          <div data-turnstile-widget></div>
+          <small data-human-status role="status" aria-live="polite">Preparando la verificación…</small>
+        </div>
+        <div class="trip-form-grid">
+          <div class="trip-field">
+            <label for="trip-origin">Dirección de origen</label>
+            <input id="trip-origin" name="origin" type="text" autocomplete="off" data-place-input aria-describedby="trip-origin-error" required />
+            <div class="trip-suggestions" data-suggestions hidden></div>
+            <small class="trip-error" id="trip-origin-error" hidden>Decinos desde dónde salen.</small>
+          </div>
+          <div class="trip-field">
+            <label for="trip-destination">Dirección de destino</label>
+            <input id="trip-destination" name="destination" type="text" autocomplete="off" data-place-input aria-describedby="trip-destination-error" required />
+            <div class="trip-suggestions" data-suggestions hidden></div>
+            <small class="trip-error" id="trip-destination-error" hidden>Decinos a dónde van.</small>
+          </div>
+          <!-- Campo de cantidad de mascotas reservado para una versión posterior.
+          <div class="trip-field">
+            <label for="trip-pets">¿Cuántas mascotas?</label>
+            <input id="trip-pets" name="pets" type="text" placeholder="Ej.: 1 perro y 1 gato" aria-describedby="trip-pets-help trip-pets-error" required />
+            <small id="trip-pets-help">Hasta 2 perros y 2 gatos están incluidos.</small>
+            <small class="trip-error" id="trip-pets-error" hidden>Contanos cuántas mascotas viajan.</small>
+          </div>
+          -->
+          <div class="trip-field trip-date-field">
+            <label for="trip-departure">¿Cuándo saldrían?</label>
+            <input id="trip-departure" name="departure" type="text" placeholder="Elegí fecha y hora" autocomplete="off" aria-describedby="trip-departure-help trip-departure-error" required />
+            <small id="trip-departure-help">Elegí la fecha y ajustá la hora aproximada de salida.</small>
+            <small class="trip-error" id="trip-departure-error" hidden>Elegí una fecha y hora de salida futuras.</small>
+          </div>
+          <div class="trip-field trip-roundtrip-field">
+            <fieldset aria-describedby="trip-roundtrip-error">
+              <legend>¿Es ida y vuelta?</legend>
+              <div class="trip-choices">
+                <label><input type="radio" name="roundTrip" value="yes" /><span>Sí</span></label>
+                <label><input type="radio" name="roundTrip" value="no" /><span>No</span></label>
+              </div>
+              <small class="trip-error" id="trip-roundtrip-error" data-roundtrip-error hidden>Elegí si es ida y vuelta.</small>
+            </fieldset>
+          </div>
+          <div class="trip-field" data-wait-field hidden>
+            <label for="trip-wait">¿Cuántos minutos más de espera?</label>
+            <input id="trip-wait" name="wait" type="number" min="0" step="1" inputmode="numeric" value="0" aria-describedby="trip-wait-help trip-wait-error" />
+            <small id="trip-wait-help">60 minutos están incluidos. Si necesitás más, indicá cuántos minutos extra.</small>
+            <small class="trip-error" id="trip-wait-error" hidden>Indicá los minutos extra en números enteros, desde 0.</small>
+          </div>
+          <div class="trip-field" data-return-choice hidden>
+            <label class="trip-check"><input id="trip-return-other" type="checkbox" /> La vuelta termina en otra dirección</label>
+          </div>
+          <div class="trip-field" data-return-field hidden>
+            <label for="trip-return">Destino final de la vuelta</label>
+            <input id="trip-return" name="return" type="text" autocomplete="off" data-place-input aria-describedby="trip-return-error" />
+            <div class="trip-suggestions" data-suggestions hidden></div>
+            <small class="trip-error" id="trip-return-error" hidden>Indicá el destino final de la vuelta.</small>
+          </div>
+        </div>
+        <div class="trip-form-footer">
+          <p>La consulta se abrirá en WhatsApp. El viaje se confirma cuando lo coordinemos.</p>
+          <button class="button" type="submit">Cotizar viaje</button>
+        </div>
+      </form>
+
+      <div class="trip-result" data-trip-result hidden>
+        <h3 tabindex="-1" data-trip-result-title>Revisá tu recorrido</h3>
+        <div class="trip-fuel-result" data-fuel-result role="status" aria-live="polite"></div>
+        <section class="trip-route-map" data-route-map hidden aria-label="Mapa del tramo de ida">
+          <h4>Tu ruta en Google Maps</h4>
+          <iframe data-route-map-frame title="Indicaciones de Google Maps desde el origen hasta el destino" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <p data-route-map-note>Se muestra el tramo de ida. El precio calculado considera todo el recorrido.</p>
+        </section>
+        <p>Podés revisar el cálculo y consultar disponibilidad por WhatsApp. Los viajes al interior requieren cotización manual.</p>
+        <textarea data-trip-summary readonly aria-label="Datos de la consulta"></textarea>
+        <p class="trip-copy-status" data-copy-status role="status" aria-live="polite"></p>
+        <div class="trip-result-actions">
+          <button class="button button-light" type="button" data-trip-edit>Editar datos</button>
+          <button class="button" type="button" data-trip-copy>Copiar consulta</button>
+          <a class="button" data-trip-whatsapp href="#" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

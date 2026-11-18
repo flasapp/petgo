@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 810" role="img" aria-labelledby="title desc">
+  <title id="title">Tres propuestas de paleta para el traslado de mascotas</title>
+  <desc id="desc">A: marfil, azul petróleo, verde azulado y coral. B: crema, marrón, terracota y ocre. C: blanco frío, azul tinta, azul intenso y amarillo.</desc>
+  <style>
+    text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .label { font-size: 17px; font-weight: 700; letter-spacing: .4px; }
+    .heading { font-size: 31px; font-weight: 750; }
+    .sub { font-size: 16px; }
+    .button { font-size: 16px; font-weight: 700; fill: #fff; }
+    .hex { font-size: 12px; font-weight: 650; text-anchor: middle; }
+  </style>
+  <rect width="1200" height="810" fill="#E5E9EA"/>
+
+  <g>
+    <rect x="20" y="20" width="1160" height="240" rx="24" fill="#F7F4ED"/>
+    <text x="56" y="62" class="label" fill="#176B66">A · CALMA CERCANA</text>
+    <text x="56" y="111" class="heading" fill="#1D3440">Un viaje más tranquilo</text>
+    <text x="56" y="143" class="sub" fill="#1D3440">Traslados de mascotas · Montevideo y el interior</text>
+    <rect x="56" y="170" width="188" height="48" rx="12" fill="#176B66"/>
+    <text x="76" y="200" class="button">Consultar viaje</text>
+    <circle cx="732" cy="119" r="28" fill="#F7F4ED" stroke="#1D3440" stroke-opacity=".25"/>
+    <circle cx="825" cy="119" r="28" fill="#1D3440"/>
+    <circle cx="918" cy="119" r="28" fill="#176B66"/>
+    <circle cx="1011" cy="119" r="28" fill="#D46A4C"/>
+    <circle cx="1104" cy="119" r="28" fill="#D9E9E2"/>
+    <text x="732" y="168" class="hex" fill="#1D3440">#F7F4ED</text>
+    <text x="825" y="168" class="hex" fill="#1D3440">#1D3440</text>
+    <text x="918" y="168" class="hex" fill="#1D3440">#176B66</text>
+    <text x="1011" y="168" class="hex" fill="#1D3440">#D46A4C</text>
+    <text x="1104" y="168" class="hex" fill="#1D3440">#D9E9E2</text>
+  </g>
+
+  <g>
+    <rect x="20" y="285" width="1160" height="240" rx="24" fill="#FBF6ED"/>
+    <text x="56" y="327" class="label" fill="#A9472D">B · CÁLIDA Y PERSONAL</text>
+    <text x="56" y="376" class="heading" fill="#382E2A">Cerca en cada viaje</text>
+    <text x="56" y="408" class="sub" fill="#382E2A">Traslados de mascotas · Montevideo y el interior</text>
+    <rect x="56" y="435" width="188" height="48" rx="12" fill="#A9472D"/>
+    <text x="76" y="465" class="button">Consultar viaje</text>
+    <circle cx="732" cy="384" r="28" fill="#FBF6ED" stroke="#382E2A" stroke-opacity=".25"/>
+    <circle cx="825" cy="384" r="28" fill="#382E2A"/>
+    <circle cx="918" cy="384" r="28" fill="#A9472D"/>
+    <circle cx="1011" cy="384" r="28" fill="#D8A24D"/>
+    <circle cx="1104" cy="384" r="28" fill="#D6E2D7"/>
+    <text x="732" y="433" class="hex" fill="#382E2A">#FBF6ED</text>
+    <text x="825" y="433" class="hex" fill="#382E2A">#382E2A</text>
+    <text x="918" y="433" class="hex" fill="#382E2A">#A9472D</text>
+    <text x="1011" y="433" class="hex" fill="#382E2A">#D8A24D</text>
+    <text x="1104" y="433" class="hex" fill="#382E2A">#D6E2D7</text>
+  </g>
+
+  <g>
+    <rect x="20" y="550" width="1160" height="240" rx="24" fill="#F6F7FA"/>
+    <text x="56" y="592" class="label" fill="#2846A2">C · URBANA Y DIRECTA</text>
+    <text x="56" y="641" class="heading" fill="#1D2542">Vamos juntos</text>
+    <text x="56" y="673" class="sub" fill="#1D2542">Traslados de mascotas · Montevideo y el interior</text>
+    <rect x="56" y="700" width="188" height="48" rx="12" fill="#2846A2"/>
+    <text x="76" y="730" class="button">Consultar viaje</text>
+    <circle cx="732" cy="649" r="28" fill="#F6F7FA" stroke="#1D2542" stroke-opacity=".25"/>
+    <circle cx="825" cy="649" r="28" fill="#1D2542"/>
+    <circle cx="918" cy="649" r="28" fill="#2846A2"/>
+    <circle cx="1011" cy="649" r="28" fill="#F4C95D"/>
+    <circle cx="1104" cy="649" r="28" fill="#B8E3D6"/>
+    <text x="732" y="698" class="hex" fill="#1D2542">#F6F7FA</text>
+    <text x="825" y="698" class="hex" fill="#1D2542">#1D2542</text>
+    <text x="918" y="698" class="hex" fill="#1D2542">#2846A2</text>
+    <text x="1011" y="698" class="hex" fill="#1D2542">#F4C95D</text>
+    <text x="1104" y="698" class="hex" fill="#1D2542">#B8E3D6</text>
+  </g>
+</svg>
