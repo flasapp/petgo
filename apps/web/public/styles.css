@@ -67,7 +67,7 @@ h1 span, h2 span { color: var(--action); }
 .journeys .section-head h2 .title-dark { color: var(--ink); }
 .route-feature { margin-top: 0; }
 .route-feature.is-scroll-ready { height: calc(150svh + 500px); }
-.route-pin { width: min(100%, 1100px); margin-inline: auto; }
+.route-pin { width: 100%; }
 .route-feature.is-scroll-ready .route-pin { position: sticky; top: max(16px, calc((100svh - var(--route-pin-height, 700px)) / 2)); }
 html.is-nav-bypassing-route .route-feature.is-scroll-ready { height: auto; }
 html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position: static; }
@@ -501,8 +501,4 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .route-feature.is-scroll-ready:not(.motion-opt-in) .route-pin { position: static; }
   .route-feature:not(.motion-opt-in) .route-replay { background: var(--action); color: white; }
   .route-stage.is-complete .arrival-ring { animation: none; }
-}
-
-@media (max-height: 740px) and (min-width: 541px) {
-  .route-pin { max-width: 900px; }
 }
