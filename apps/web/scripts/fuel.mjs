@@ -19,8 +19,17 @@ export function calculateSalePrice(pricingBaseUYU, markupPercent, minimumUYU) {
   }
   const markupUYU = pricingBaseUYU * markupPercent / 100;
   const beforeMinimumUYU = pricingBaseUYU + markupUYU;
-  const priceUYU = Math.max(minimumUYU, beforeMinimumUYU);
-  return { markupPercent, markupUYU, beforeMinimumUYU, minimumUYU, minimumAdjustmentUYU: priceUYU - beforeMinimumUYU, priceUYU };
+  const withMinimumUYU = Math.max(minimumUYU, beforeMinimumUYU);
+  const priceUYU = Math.ceil(withMinimumUYU / 5) * 5;
+  return {
+    markupPercent,
+    markupUYU,
+    beforeMinimumUYU,
+    minimumUYU,
+    minimumAdjustmentUYU: withMinimumUYU - beforeMinimumUYU,
+    roundingAdjustmentUYU: priceUYU - withMinimumUYU,
+    priceUYU,
+  };
 }
 
 export function calculateWait(waitMinutes) {

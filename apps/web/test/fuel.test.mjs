@@ -66,9 +66,12 @@ test('separates driving and waiting labor before applying a 30 percent markup an
   assert.deepEqual(labor, { drivingUYU: 400, waitingUYU: 600, totalUYU: 1000 });
   assert.deepEqual(calculateSalePrice(1000, 30, 600), {
     markupPercent: 30, markupUYU: 300, beforeMinimumUYU: 1300,
-    minimumUYU: 600, minimumAdjustmentUYU: 0, priceUYU: 1300,
+    minimumUYU: 600, minimumAdjustmentUYU: 0, roundingAdjustmentUYU: 0, priceUYU: 1300,
   });
   assert.equal(calculateSalePrice(100, 30, 600).priceUYU, 600);
+  assert.equal(calculateSalePrice(1001, 30, 600).priceUYU, 1305);
+  assert.equal(calculateSalePrice(461.62, 30, 600).priceUYU, 605);
+  assert.equal(calculateSalePrice(100, 30, 602).priceUYU, 605);
   assert.throws(() => calculateSalePrice(-1, 30, 600));
 });
 

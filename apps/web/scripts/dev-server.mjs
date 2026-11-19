@@ -76,7 +76,7 @@ async function estimateTrip(input, onProgress = () => {}) {
     baseCoordinates = (await getPlace(basePlaceId, googleKey)).coordinates;
     if (!isMontevideo(baseCoordinates, boundary)) {
       baseCoordinates = undefined;
-      throw new Error('La base no se pudo ubicar en Montevideo.');
+      throw new Error('No se pudo calcular este recorrido. Consultá por WhatsApp.');
     }
     advance('Base ubicada. Calculando los tramos…');
   }

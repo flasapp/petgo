@@ -296,10 +296,28 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .trip-suggestions button:hover, .trip-suggestions button:focus-visible { background: var(--mist); }
 .trip-google-attribution { display: block; width: 120px; max-width: 100%; margin: 7px 8px 2px auto; }
 .trip-check { display: flex !important; align-items: center; gap: 9px; cursor: pointer; }
-.trip-fuel-result { margin: 15px 0 20px; padding: 17px; border-radius: 12px; background: var(--mist); font-size: 14px; }
-.trip-fuel-result ul { margin: 10px 0; padding-left: 19px; }
-.trip-fuel-result p { margin: 8px 0; font-weight: 800; }
-.trip-fuel-result small { color: #456455; }
+.trip-fuel-result { margin: 15px 0 22px; font-size: 14px; }
+.trip-quote { display: grid; gap: 22px; }
+.trip-quote-price { padding: 24px 27px; border-radius: 16px; background: var(--action); color: white; box-shadow: 0 14px 30px rgba(20, 74, 49, .17); }
+.trip-quote-price h4 { margin: 0 0 5px; font: 700 17px/1.3 var(--body); }
+.trip-quote-price strong { display: block; font: 700 clamp(38px, 7vw, 56px)/1.05 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
+.trip-result .trip-quote-price p { max-width: none; margin: 10px 0 0; color: #e2f6e9; font-size: 13px; font-weight: 700; }
+.trip-quote-whatsapp { margin-top: 13px; padding: 12px 18px; background: var(--mint); color: var(--ink); box-shadow: none; }
+.trip-quote-whatsapp:hover { background: #b5efcc; box-shadow: none; }
+.trip-quote-route { padding: 0 4px; }
+.trip-quote-route h4, .trip-quote-includes h4 { margin: 0 0 15px; font: 700 22px/1.2 var(--display); }
+.trip-quote-stops { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.trip-quote-stops li { position: relative; display: grid; grid-template-columns: 19px minmax(0, 1fr); gap: 0 13px; padding: 0 0 17px; overflow-wrap: anywhere; }
+.trip-quote-stops li:last-child { padding-bottom: 0; }
+.trip-quote-stops li::before { content: ""; grid-row: span 2; align-self: start; width: 13px; height: 13px; margin-top: 5px; border: 3px solid var(--action); border-radius: 50%; background: white; }
+.trip-quote-stops li:not(:last-child)::after { content: ""; position: absolute; top: 22px; bottom: 5px; left: 6px; width: 1px; background: #a9c7b5; }
+.trip-quote-stops span { color: #456455; font-size: 12px; font-weight: 800; }
+.trip-quote-stops strong { font-size: 15px; line-height: 1.4; }
+.trip-quote-includes { padding: 19px 22px; border-radius: 14px; background: var(--mist); }
+.trip-quote-includes h4 { margin-bottom: 10px; font-size: 19px; }
+.trip-quote-includes ul { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.trip-quote-includes li { position: relative; padding-left: 19px; color: var(--ink); font-size: 14px; font-weight: 800; }
+.trip-quote-includes li::before { content: ""; position: absolute; top: 7px; left: 1px; width: 9px; height: 5px; border-bottom: 2px solid var(--action); border-left: 2px solid var(--action); transform: rotate(-45deg); }
 .trip-route-map { margin: 0 0 20px; }
 .trip-route-map h4 { margin: 0 0 10px; font: 700 20px/1.2 var(--display); }
 .trip-route-map iframe { display: block; width: 100%; height: 300px; border: 0; border-radius: 12px; background: var(--mist); }
@@ -321,15 +339,6 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .trip-loader-dog { z-index: 1; top: -5px; left: 15px; width: 59px; filter: drop-shadow(0 2px 2px rgba(36,58,49,.15)); }
 .trip-loader-truck { z-index: 2; right: 0; bottom: 0; width: 148px; filter: drop-shadow(0 4px 3px rgba(36,58,49,.16)); }
 .trip-fuel-result .trip-loader-message { margin: 11px 0 0; color: var(--action); font-size: 13px; line-height: 1.4; }
-.trip-price-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
-.trip-price-card { min-width: 0; padding: 15px; border: 1px solid #a9c7b5; border-radius: 12px; background: #fff; }
-.trip-price-sale { background: #f2fff6; }
-.trip-price-card h4 { margin: 0 0 12px; font-size: 16px; }
-.trip-price-card dl { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 10px; margin: 0; }
-.trip-price-card dt, .trip-price-card dd { margin: 0; font-size: 13px; }
-.trip-price-card dd { font-weight: 800; text-align: right; white-space: nowrap; }
-.trip-price-card .trip-price-total { padding-top: 9px; border-top: 1px solid var(--line); font-size: 15px; font-weight: 900; }
-.trip-price-card p { margin: 0; font-size: 13px; font-weight: 600; }
 
 @media (max-width: 1050px) {
   .wrap { width: min(100% - 40px, 1240px); }
@@ -431,15 +440,26 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .footer-socials { grid-column: 1; }
   .trip-dialog { width: calc(100% - 18px); max-height: calc(100dvh - 18px); border-radius: 18px; }
   .trip-dialog-head { padding: 27px 56px 22px 22px; }
-  .trip-dialog-head h2 { font-size: 30px; }
+  .trip-dialog-head h2 { font-size: 26px; }
   .trip-dialog-head .dialog-close { top: 18px; right: 18px; }
   .trip-form, .trip-result { padding: 24px 22px 27px; }
+  .trip-result h3 { font-size: 22px; }
   .trip-route-map iframe { height: 250px; }
   .trip-form-grid { grid-template-columns: 1fr; gap: 19px; }
   .trip-form-footer { display: block; }
   .trip-form-footer p { margin-bottom: 14px; }
   .trip-form-footer .button { width: 100%; }
-  .trip-price-grid { grid-template-columns: 1fr; }
+  .trip-quote { gap: 19px; }
+  .trip-quote-price { padding: 19px 20px; }
+  .trip-quote-price h4 { font-size: 14px; font-weight: 700; }
+  .trip-quote-price strong { font-size: 32px; font-weight: 600; }
+  .trip-result .trip-quote-price p { font-size: 12px; font-weight: 600; }
+  .trip-quote-whatsapp { display: flex; width: 100%; min-height: 44px; font-size: 14px; }
+  .trip-quote-route h4 { font-size: 19px; }
+  .trip-quote-stops span { font-size: 11px; font-weight: 700; }
+  .trip-quote-stops strong { font-size: 13px; font-weight: 600; }
+  .trip-quote-includes h4 { font-size: 17px; }
+  .trip-quote-includes ul { display: grid; gap: 7px; }
   .trip-loader-heading { align-items: flex-start; flex-direction: column; gap: 3px; }
   .trip-loader-scene { height: 143px; }
   .trip-result-actions { flex-direction: column-reverse; }

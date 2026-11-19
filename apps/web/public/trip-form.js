@@ -1,6 +1,8 @@
 const tripDialog = document.querySelector('#trip-dialog');
 
 if (tripDialog) {
+  const dialogTitle = tripDialog.querySelector('#trip-dialog-title');
+  const dialogIntro = tripDialog.querySelector('.trip-dialog-head p');
   const form = tripDialog.querySelector('#trip-form');
   const origin = form.querySelector('#trip-origin');
   const destination = form.querySelector('#trip-destination');
@@ -17,6 +19,7 @@ if (tripDialog) {
   const resultTitle = tripDialog.querySelector('[data-trip-result-title]');
   const summary = tripDialog.querySelector('[data-trip-summary]');
   const copyStatus = tripDialog.querySelector('[data-copy-status]');
+  const copyButton = tripDialog.querySelector('[data-trip-copy]');
   const whatsappLink = tripDialog.querySelector('[data-trip-whatsapp]');
   const fuelResult = tripDialog.querySelector('[data-fuel-result]');
   const routeMap = tripDialog.querySelector('[data-route-map]');
@@ -53,10 +56,7 @@ if (tripDialog) {
     },
   });
   let opener = null;
-  const distanceFormatter = new Intl.NumberFormat('es-UY', { maximumFractionDigits: 1 });
-  const literFormatter = new Intl.NumberFormat('es-UY', { maximumFractionDigits: 2 });
   const moneyFormatter = new Intl.NumberFormat('es-UY', { maximumFractionDigits: 0 });
-  const targetFormatter = new Intl.NumberFormat('es-UY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   let estimateController = null;
   let activeLoader = null;
   const cancelPlaceSearches = [];
@@ -193,7 +193,7 @@ if (tripDialog) {
         } catch { /* La consulta manual sigue disponible. */ } finally {
           if (controller === requestController) controller = null;
         }
-      }, 500);
+      }, 700);
     });
   });
 
@@ -202,6 +202,16 @@ if (tripDialog) {
     estimateController = null;
     activeLoader?.disconnect();
     activeLoader = null;
+  }
+
+  function setQuoteActionsPending(pending) {
+    copyButton.hidden = pending;
+    whatsappLink.hidden = pending || Boolean(fuelResult.querySelector('[data-trip-whatsapp-primary]'));
+  }
+
+  function setResultHeading(showingResult) {
+    dialogTitle.textContent = showingResult ? 'Tu cotización' : 'Contanos el viaje';
+    dialogIntro.hidden = showingResult;
   }
 
   function showLoader() {
@@ -230,10 +240,12 @@ if (tripDialog) {
     const trail = loader.querySelector('[data-loader-trail]');
     const message = loader.querySelector('[data-loader-message]');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let targetPercent = 0;
+    let reportedPercent = 0;
     let visiblePercent = 0;
+    let finishing = false;
+    const startedAt = performance.now();
+    let lastFrameTime = startedAt;
     let frameId = null;
-    let lastFrameTime = 0;
     let finishResolve = null;
     let finishSignal = null;
     const positionVehicle = () => {
@@ -243,46 +255,48 @@ if (tripDialog) {
     };
     const completeFinish = () => {
       if (!finishResolve) return;
-      finishSignal.removeEventListener('abort', completeFinish);
+      finishSignal?.removeEventListener('abort', completeFinish);
       const resolve = finishResolve;
       finishResolve = null;
       finishSignal = null;
       resolve();
     };
     const animate = (time) => {
-      // A lo sumo 50 puntos porcentuales por segundo: 100 % lleva al menos 2 s.
-      visiblePercent = Math.min(targetPercent, visiblePercent + Math.max(0, time - lastFrameTime) / 20);
+      const elapsed = time - startedAt;
+      // Avanza mientras la solicitud está en curso, incluso entre eventos del servidor.
+      const automaticPercent = 95 * (1 - Math.exp(-elapsed / 12000));
+      const targetPercent = finishing ? 100 : Math.max(reportedPercent, automaticPercent);
+      // Limitar cada cuadro evita saltos tras volver a una pestaña en segundo plano.
+      const frameDuration = Math.min(32, Math.max(0, time - lastFrameTime));
+      visiblePercent = Math.min(targetPercent, visiblePercent + frameDuration / (reducedMotion ? 40 : 20));
       lastFrameTime = time;
       positionVehicle();
-      if (visiblePercent < targetPercent) {
-        frameId = requestAnimationFrame(animate);
-      } else {
+      if (finishing && elapsed >= 2000 && visiblePercent >= 100) {
         frameId = null;
-        if (targetPercent === 100) completeFinish();
+        completeFinish();
+        return;
       }
-    };
-    const advanceTo = (percent) => {
-      targetPercent = Math.max(targetPercent, Math.min(100, Number(percent) || 0));
-      if (reducedMotion || frameId !== null || visiblePercent >= targetPercent) return;
-      lastFrameTime = performance.now();
       frameId = requestAnimationFrame(animate);
     };
     const resizeObserver = new ResizeObserver(positionVehicle);
     resizeObserver.observe(scene);
     positionVehicle();
+    frameId = requestAnimationFrame(animate);
     return {
       update(event) {
-        message.textContent = event.message;
-        advanceTo(event.percent);
+        const percent = Number(event.percent) || 0;
+        reportedPercent = Math.max(reportedPercent, Math.min(95, percent));
+        message.textContent = percent < 25 ? 'Ubicando origen y destino…'
+          : percent < 75 ? 'Calculando el recorrido…' : 'Preparando tu cotización…';
       },
       finish(signal) {
-        if (signal.aborted || reducedMotion) return Promise.resolve();
+        if (signal.aborted) return Promise.resolve();
         return new Promise((resolve) => {
           finishResolve = resolve;
           finishSignal = signal;
           signal.addEventListener('abort', completeFinish, { once: true });
-          this.update({ percent: 100, message: 'Llegando al destino…' });
-          if (visiblePercent === 100) completeFinish();
+          finishing = true;
+          message.textContent = 'Llegando al destino…';
         });
       },
       disconnect() {
@@ -325,61 +339,65 @@ if (tripDialog) {
 
   function showFuel(data) {
     fuelResult.replaceChildren();
-    const title = document.createElement('strong');
-    title.textContent = `Recorrido · ${data.zone}`;
-    fuelResult.append(title);
-    const list = document.createElement('ul');
-    for (const leg of data.legs) {
-      const item = document.createElement('li');
-      item.textContent = `${leg.label}: ${distanceFormatter.format(leg.meters / 1000)} km · aprox. ${formatDuration(leg.seconds)}`;
-      list.append(item);
+    const quote = document.createElement('div');
+    quote.className = 'trip-quote';
+    const price = document.createElement('section');
+    price.className = 'trip-quote-price';
+    const priceTitle = document.createElement('h4');
+    priceTitle.textContent = data.sale ? 'Precio estimado del viaje' : 'Precio del viaje';
+    const priceValue = document.createElement('strong');
+    priceValue.textContent = data.sale ? `$${moneyFormatter.format(data.sale.priceUYU)} UYU` : 'A confirmar';
+    const priceQuestion = document.createElement('p');
+    priceQuestion.textContent = data.sale
+      ? '¿Te sirve este precio aproximado?'
+      : '¿Querés saber cuánto cuesta este viaje?';
+    const priceWhatsapp = document.createElement('a');
+    priceWhatsapp.className = 'button trip-quote-whatsapp';
+    priceWhatsapp.textContent = 'Escribinos por WhatsApp';
+    priceWhatsapp.href = whatsappLink.href;
+    priceWhatsapp.target = '_blank';
+    priceWhatsapp.rel = 'noopener noreferrer';
+    priceWhatsapp.dataset.tripWhatsappPrimary = '';
+    price.append(priceTitle, priceValue, priceQuestion, priceWhatsapp);
+    quote.append(price);
+
+    const route = document.createElement('section');
+    route.className = 'trip-quote-route';
+    const routeTitle = document.createElement('h4');
+    routeTitle.textContent = 'Tu trayecto';
+    route.append(routeTitle);
+    const stops = document.createElement('ol');
+    stops.className = 'trip-quote-stops';
+    const customerStops = [origin.value.trim(), destination.value.trim()];
+    if (data.roundTrip) customerStops.push(returnOther.checked ? returnInput.value.trim() : origin.value.trim());
+    for (const [index, address] of customerStops.entries()) {
+      const stop = document.createElement('li');
+      const label = document.createElement('span');
+      label.textContent = index === 0 ? 'Origen' : index === 1 ? 'Destino' : 'Final de la vuelta';
+      const place = document.createElement('strong');
+      place.textContent = address;
+      stop.append(label, place);
+      stops.append(stop);
     }
-    fuelResult.append(list);
-    const totals = document.createElement('p');
-    totals.textContent = `${distanceFormatter.format(data.meters / 1000)} km en total · ${distanceFormatter.format(data.cityMeters / 1000)} km en Montevideo · ${distanceFormatter.format(data.roadMeters / 1000)} km fuera · ${literFormatter.format(data.liters)} l de nafta`;
-    fuelResult.append(totals);
-    const time = document.createElement('p');
+    route.append(stops);
+    quote.append(route);
+
+    const includes = document.createElement('section');
+    includes.className = 'trip-quote-includes';
+    const includesTitle = document.createElement('h4');
+    includesTitle.textContent = 'Este viaje incluye';
+    const includedList = document.createElement('ul');
+    const items = [data.roundTrip ? 'Ida y vuelta' : 'Traslado de ida', 'Hasta 2 perros y 2 gatos'];
     const extraWaitMinutes = Math.max(0, data.wait.requestedMinutes - includedWaitMinutes);
-    time.textContent = `Conducción estimada: aprox. ${formatDuration(data.durationSeconds)}${data.roundTrip ? ` · Espera: 60 min incluidos${extraWaitMinutes ? ` + ${extraWaitMinutes} min extra` : ''} · Tiempo ocupado: aprox. ${formatDuration(data.drivingAndWaitSeconds)}` : ''}`;
-    fuelResult.append(time);
-
-    const comparison = document.createElement('div');
-    comparison.className = 'trip-price-grid';
-    const costs = document.createElement('section');
-    costs.className = 'trip-price-card';
-    const costTitle = document.createElement('h4');
-    costTitle.textContent = 'Costos calculados · UYU';
-    costs.append(costTitle);
-    const costRows = document.createElement('dl');
-    addPriceRow(costRows, 'Nafta', data.cost.fuelUYU);
-    addPriceRow(costRows, 'Mano de obra · conducción', data.cost.drivingUYU);
-    if (data.roundTrip) addPriceRow(costRows, 'Mano de obra · espera', data.cost.waitingUYU);
-    addPriceRow(costRows, 'Total de estos costos', data.cost.totalUYU, true);
-    costs.append(costRows);
-    comparison.append(costs);
-
-    const sale = document.createElement('section');
-    sale.className = 'trip-price-card trip-price-sale';
-    const saleTitle = document.createElement('h4');
-    saleTitle.textContent = 'Precio de venta · UYU';
-    sale.append(saleTitle);
-    if (data.sale) {
-      const saleRows = document.createElement('dl');
-      addPriceRow(saleRows, `Recargo ${data.sale.markupPercent} %`, data.sale.markupUYU);
-      if (data.sale.minimumAdjustmentUYU > 0) addPriceRow(saleRows, `Ajuste al mínimo de $${moneyFormatter.format(data.sale.minimumUYU)}`, data.sale.minimumAdjustmentUYU);
-      addPriceRow(saleRows, 'Precio calculado', data.sale.priceUYU, true);
-      sale.append(saleRows);
-    } else {
-      const manual = document.createElement('p');
-      manual.textContent = 'Interior: el porcentaje y los peajes siguen pendientes. Consultá el precio por WhatsApp.';
-      sale.append(manual);
+    if (data.roundTrip) items.push(`60 minutos de espera${extraWaitMinutes ? ` y ${extraWaitMinutes} minutos adicionales` : ''}`);
+    for (const item of items) {
+      const line = document.createElement('li');
+      line.textContent = item;
+      includedList.append(line);
     }
-    comparison.append(sale);
-    fuelResult.append(comparison);
-
-    const note = document.createElement('small');
-    note.textContent = `${data.roundTrip ? 'La ida y vuelta incluye 60 minutos de espera en el precio calculado; los minutos extra que indiques también se suman. ' : ''}La mano de obra se calcula a $${moneyFormatter.format(data.laborRateUYUPerHour)}/h sobre conducción y toda la espera prevista. Solo la nafta se redondea antes del precio; los demás importes se muestran a centésimos y pueden diferir un centésimo al sumarlos. La ruta no usa tráfico en tiempo real. Faltan mantenimiento, seguro, estacionamiento y tiempo de carga y descarga${data.tollsPending ? ', además de peajes' : ''}. El precio y la disponibilidad se confirman por WhatsApp.`;
-    fuelResult.append(note);
+    includes.append(includesTitle, includedList);
+    quote.append(includes);
+    fuelResult.append(quote);
     showRouteMap(data);
   }
 
@@ -387,29 +405,9 @@ if (tripDialog) {
     if (!data.mapUrl) return;
     routeMapFrame.src = data.mapUrl;
     routeMapNote.textContent = data.roundTrip
-      ? 'Se muestra la ida. El precio calculado incluye la vuelta, la espera y los trayectos desde y hasta la base. El trazado visual puede variar del cálculo.'
-      : 'Se muestra el traslado de ida. El precio calculado incluye los trayectos desde y hasta la base. El trazado visual puede variar del cálculo.';
+      ? 'El mapa muestra la ida. La vuelta también está contemplada en la cotización.'
+      : 'El mapa muestra el traslado entre las direcciones indicadas.';
     routeMap.hidden = false;
-  }
-
-  function addPriceRow(list, label, amount, total = false) {
-    const term = document.createElement('dt');
-    const value = document.createElement('dd');
-    if (total) {
-      term.className = 'trip-price-total';
-      value.className = 'trip-price-total';
-    }
-    term.textContent = label;
-    value.textContent = `$${targetFormatter.format(amount)}`;
-    list.append(term, value);
-  }
-
-  function formatDuration(seconds) {
-    const minutes = Math.round(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const remainder = minutes % 60;
-    if (!hours) return `${minutes} min`;
-    return remainder ? `${hours} h ${remainder} min` : `${hours} h`;
   }
 
   function formatDate(date) {
@@ -453,8 +451,10 @@ if (tripDialog) {
     returnInput.required = false;
     form.hidden = false;
     result.hidden = true;
+    setResultHeading(false);
     copyStatus.textContent = '';
     fuelResult.replaceChildren();
+    setQuoteActionsPending(false);
     routeMap.hidden = true;
     routeMapFrame.removeAttribute('src');
     if (needsHumanCheck()) requireHumanCheck();
@@ -535,7 +535,7 @@ if (tripDialog) {
       return;
     }
 
-    summary.value = [
+    const messageLines = [
       'Hola, quiero consultar un traslado con PetGo.',
       `Origen: ${origin.value.trim()}`,
       `Destino: ${destination.value.trim()}`,
@@ -544,22 +544,42 @@ if (tripDialog) {
       ...(roundTrip.value === 'yes' ? [`Espera: 60 minutos incluidos${extraWaitMinutes ? ` + ${extraWaitMinutes} minutos extra` : ''}`] : []),
       ...(roundTrip.value === 'yes' && returnOther.checked ? [`Destino final de la vuelta: ${returnInput.value.trim()}`] : []),
       // TODO: definir y aplicar el descuento para seguidores de Instagram en la futura tarifa al cliente.
-      '¿Tienen disponibilidad para este viaje? ¿Cuánto cuesta?',
-    ].join('\n');
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(summary.value)}`;
-    whatsappLink.href = whatsappUrl;
+    ];
+    const updateSummary = (priceUYU) => {
+      summary.value = [
+        ...messageLines,
+        ...(Number.isFinite(priceUYU) ? [`Precio aproximado: $${moneyFormatter.format(priceUYU)} UYU.`] : []),
+        Number.isFinite(priceUYU)
+          ? '¿Tienen disponibilidad y me confirman este precio?'
+          : '¿Tienen disponibilidad para este viaje? ¿Cuánto cuesta?',
+      ].join('\n');
+      whatsappLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(summary.value)}`;
+      const priceWhatsapp = fuelResult.querySelector('[data-trip-whatsapp-primary]');
+      if (priceWhatsapp) priceWhatsapp.href = whatsappLink.href;
+    };
+    fuelResult.replaceChildren();
+    routeMap.hidden = true;
+    routeMapFrame.removeAttribute('src');
+    updateSummary();
+    setQuoteActionsPending(false);
+    copyStatus.textContent = '';
     form.hidden = true;
     result.hidden = false;
+    setResultHeading(true);
+    resultTitle.textContent = 'Calculando tu viaje';
     resultTitle.focus();
     if (needsHumanCheck()) {
+      resultTitle.textContent = 'Consultá tu viaje';
       fuelResult.textContent = 'Verificá que sos una persona para calcular el precio. Podés consultar el viaje por WhatsApp igualmente.';
       return;
     }
     if (!origin.dataset.placeId || !destination.dataset.placeId || (roundTrip.value === 'yes' && returnOther.checked && !returnInput.dataset.placeId)) {
-      fuelResult.textContent = 'Para calcular la nafta, elegí cada dirección de las sugerencias. Podés consultar el viaje por WhatsApp igualmente.';
+      resultTitle.textContent = 'Consultá tu viaje';
+      fuelResult.textContent = 'Para calcular el precio, elegí cada dirección de las sugerencias. Podés consultar el viaje por WhatsApp igualmente.';
       return;
     }
     stopEstimate();
+    setQuoteActionsPending(true);
     const controller = new AbortController();
     estimateController = controller;
     activeLoader = showLoader();
@@ -579,9 +599,14 @@ if (tripDialog) {
       });
       const estimate = await readEstimateStream(response, (progress) => loader.update(progress));
       await loader.finish(controller.signal);
-      if (!controller.signal.aborted) showFuel(estimate);
+      if (!controller.signal.aborted) {
+        showFuel(estimate);
+        updateSummary(estimate.sale?.priceUYU);
+        resultTitle.textContent = 'Precio y recorrido';
+      }
     } catch (error) {
       if (!controller.signal.aborted) {
+        resultTitle.textContent = 'No pudimos calcular el precio';
         const verificationProblem = checkIsHuman && /verific|límite de consultas/i.test(error.message);
         if (verificationProblem) requireHumanCheck(error.message);
         fuelResult.textContent = verificationProblem
@@ -589,7 +614,10 @@ if (tripDialog) {
           : `${error.message} Podés consultar el viaje por WhatsApp igualmente.`;
       }
     } finally {
-      if (estimateController === controller) stopEstimate();
+      if (estimateController === controller) {
+        setQuoteActionsPending(false);
+        stopEstimate();
+      }
     }
   });
 
@@ -602,9 +630,10 @@ if (tripDialog) {
     stopEstimate();
     result.hidden = true;
     form.hidden = false;
+    setResultHeading(false);
     origin.focus();
   });
-  tripDialog.querySelector('[data-trip-copy]').addEventListener('click', async () => {
+  copyButton.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(summary.value);
       copyStatus.textContent = 'Consulta copiada.';
