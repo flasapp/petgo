@@ -61,11 +61,11 @@ Si `/api/places` devuelve **503**, comprobar que `.env` contiene la clave despu�
 
 ## Recorrido animado
 
-La escena de viaje de `public/index.html` combina un recorrido SVG original con **dos imágenes transparentes independientes**: `public/assets/camioneta-base.png` detrás y `public/assets/perro-sonriente-recorte.png` encima de la cúpula. El perro se sale deliberadamente de la silueta del vehículo; es un montaje conceptual, no una foto del traslado ni un mapa real. Ambas capas están dentro del mismo grupo SVG y avanzan juntas. `public/route-animation.js` vincula su posición y el tramo pintado al scroll. El mapa queda fijo en pantalla durante el trayecto; las tarjetas siguientes aparecen después de llegar al destino. La camioneta solo avanza al bajar: si se vuelve a subir, conserva la posición alcanzada. El botón final permite repetir el viaje desde Origen. No requiere video ni bibliotecas externas.
+La escena de viaje de `public/index.html` combina un recorrido SVG original con **dos imágenes transparentes independientes**: `public/assets/camioneta-base.png` detrás y `public/assets/perro-sonriente-recorte.png` encima de la cúpula. El perro se sale deliberadamente de la silueta del vehículo; es un montaje conceptual, no una foto del traslado ni un mapa real. Ambas capas están dentro del mismo grupo SVG y avanzan juntas. `public/route-animation.js` vincula su posición y el tramo pintado al scroll. El mapa queda fijo en pantalla durante el trayecto; las tarjetas siguientes aparecen después de llegar al destino. La camioneta avanza al bajar y retrocede al subir, siguiendo la posición actual del scroll. El botón final permite repetir el viaje desde Origen. No requiere video ni bibliotecas externas.
 
 Un globo de conversación acompaña al vehículo en tres momentos: en Origen pregunta desde dónde salen las mascotas, en el punto medio cuántas viajan y en Destino hacia dónde van. Entre esos puntos se oculta para despejar el recorrido. El texto bajo el mapa explica cada dato según la etapa alcanzada y conserva esa explicación hasta la siguiente etapa. El título permanece visible durante el recorrido.
 
-El recorrido de la camioneta sigue el scroll tanto en la vista local como en la web publicada. La preferencia de reducir movimiento mantiene los cambios de texto sin animación, pero no altera el recorrido.
+El recorrido de la camioneta sigue el scroll tanto en la vista local como en la web publicada. Los textos de cada etapa cambian con un breve fade y desplazamiento vertical.
 
 Prompts finales usados con la herramienta integrada `image_gen`:
 

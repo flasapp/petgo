@@ -66,7 +66,7 @@ h1 span, h2 span { color: var(--action); }
 .journeys .section-head { margin-bottom: 18px; }
 .journeys .section-head h2 .title-dark { color: var(--ink); }
 .route-feature { margin-top: 0; }
-.route-feature.is-scroll-ready { height: calc(150svh + 500px); }
+.route-feature.is-scroll-ready { height: calc(var(--route-pin-height, 700px) + 100svh); }
 .route-pin { width: 100%; }
 .route-feature.is-scroll-ready .route-pin { position: sticky; top: max(16px, calc((100svh - var(--route-pin-height, 700px)) / 2)); }
 html.is-nav-bypassing-route .route-feature.is-scroll-ready { height: auto; }
@@ -414,7 +414,6 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .hero-art img { width: min(93%, 360px); right: 3%; }
   .hero-art-note { right: 11px; bottom: 10px; font-size: 9px; }
   .journeys .section-head { margin-bottom: 18px; }
-  .route-feature.is-scroll-ready { height: calc(150svh + 250px); }
   .route-stage { border-radius: 18px; }
   .route-bubble { padding: 10px 13px; font-size: 14px; }
   .route-scene-note { top: auto; bottom: 11px; right: 11px; font-size: 10px; }
