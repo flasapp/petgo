@@ -5,7 +5,7 @@ El emprendedor aportó estas dos imágenes del exterior de su camioneta el 2026-
 - [Vista trasera y lateral original](vehiculo-original-01.png).
 - [Vista lateral original](vehiculo-original-02.png).
 
-La [versión editada](vehiculo-editado-01.png) parte principalmente de la primera imagen y usa la segunda como referencia de la forma del vehículo. Se limpiaron elementos que distraían y se reconstruyó un fondo urbano tranquilo. **El fondo de la versión editada no documenta un lugar ni un viaje real.** La versión ligera para la web está en [vehiculo-petgo-editado.jpg](../../../../apps/web/public/assets/vehiculo-petgo-editado.jpg).
+La [versión editada](vehiculo-editado-01.png) parte principalmente de la primera imagen y usa la segunda como referencia de la forma del vehículo. Se limpiaron elementos que distraían y se reconstruyó un fondo urbano tranquilo. **El fondo de la versión editada no documenta un lugar ni un viaje real.** La versión ligera para la web está en [vehiculo-gopet-editado.jpg](../../../../apps/web/public/assets/vehiculo-gopet-editado.jpg).
 
 Esta foto muestra el exterior. No acredita cómo está preparado el interior ni quién realiza los traslados; para esos temas harán falta fotografías propias adicionales.
 

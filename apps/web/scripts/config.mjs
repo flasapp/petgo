@@ -37,6 +37,8 @@ export function readConfig(env) {
   return Object.freeze({
     port,
     googleKey: env.GOOGLE_MAPS_API_KEY?.trim() || undefined,
+    enableMap: env.ENABLE_MAP?.trim() === 'true',
+    enableMessage: env.ENABLE_MESSAGE?.trim() === 'true',
     humanCheckEnabled,
     turnstileSiteKey: humanCheckEnabled ? publicKey(env, 'TURNSTILE_SITE_KEY') : undefined,
     turnstileSecretKey: humanCheckEnabled ? env.TURNSTILE_SECRET_KEY?.trim() || undefined : undefined,

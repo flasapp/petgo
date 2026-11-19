@@ -62,7 +62,7 @@ El menta puede ser protagonista **sin usar blanco sobre él**: esa pareja tiene 
 
 1. Prueba de legibilidad sobre fotografías de la carrocería gris claro y la cúpula gris oscuro.
 2. Prueba en avatar, publicación de red social, tarjeta de contacto, web móvil y rótulo del vehículo.
-3. Revisar la [propuesta PNG transparente de logo PetGo](activos/logo/README.md) junto con la tipografía final y las aplicaciones reales.
+3. Revisar la [propuesta PNG transparente de logo GoPet](activos/logo/README.md) junto con la tipografía final y las aplicaciones reales.
 4. Fotografías propias y permisos para mostrar personas y mascotas.
 
 Las [tres opciones de paleta anteriores](propuestas-paleta-y-estilo.md) quedan como historial de exploración. La dirección de trabajo actual es **verde pastel**.

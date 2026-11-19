@@ -17,8 +17,20 @@ test('loads business values from environment configuration', () => {
   assert.equal(config.minimumSaleUYU, 600);
   assert.equal(config.googleMonthlyLimit, 9000);
   assert.equal(config.googleKey, undefined);
+  assert.equal(config.enableMap, false);
+  assert.equal(config.enableMessage, false);
   assert.equal(config.humanCheckEnabled, true);
   assert.equal(config.turnstileSiteKey, undefined);
+});
+
+test('shows optional map and message only when explicitly enabled', () => {
+  const { ENABLE_MAP: _map, ENABLE_MESSAGE: _message, ...withoutFlags } = validConfig;
+  assert.equal(readConfig(withoutFlags).enableMap, false);
+  assert.equal(readConfig(withoutFlags).enableMessage, false);
+  assert.equal(readConfig({ ...validConfig, ENABLE_MAP: 'true', ENABLE_MESSAGE: 'true' }).enableMap, true);
+  assert.equal(readConfig({ ...validConfig, ENABLE_MAP: 'true', ENABLE_MESSAGE: 'true' }).enableMessage, true);
+  assert.equal(readConfig({ ...validConfig, ENABLE_MAP: 'TRUE', ENABLE_MESSAGE: '1' }).enableMap, false);
+  assert.equal(readConfig({ ...validConfig, ENABLE_MAP: 'TRUE', ENABLE_MESSAGE: '1' }).enableMessage, false);
 });
 
 test('allows disabling Turnstile with CHEK_IS_HUMAN=false', () => {

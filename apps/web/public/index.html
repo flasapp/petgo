@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e5f6eb" />
-    <meta name="description" content="¿Tenés que llevar a tu mascota a la veterinaria o a otro lugar? En PetGo hacemos traslados seguros por Montevideo, con personas que aman a los animales." />
-    <title>PetGo · Traslados de mascotas en Montevideo</title>
-    <link rel="icon" type="image/png" href="assets/petgo-favicon.png" />
+    <meta name="description" content="¿Tenés que llevar a tu mascota a la veterinaria o a otro lugar? En GoPet hacemos traslados seguros por Montevideo, con personas que aman a los animales." />
+    <title>GoPet · Traslados de mascotas en Montevideo</title>
+    <link rel="icon" type="image/png" href="assets/gopet-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -18,12 +18,12 @@
     <script src="trip-form.js" defer></script>
     <script src="route-animation.js" defer></script>
   </head>
-  <body data-whatsapp-number="__WHATSAPP_NUMBER__" data-check-is-human="__CHECK_IS_HUMAN__" data-turnstile-site-key="__TURNSTILE_SITE_KEY__">
+  <body data-whatsapp-number="__WHATSAPP_NUMBER__" data-check-is-human="__CHECK_IS_HUMAN__" data-enable-map="__ENABLE_MAP__" data-enable-message="__ENABLE_MESSAGE__" data-turnstile-site-key="__TURNSTILE_SITE_KEY__">
     <a class="skip-link" href="#contenido">Ir al contenido</a>
     <header class="site-header" id="inicio">
       <div class="header-inner wrap">
-        <a class="brand" href="#inicio" aria-label="PetGo · volver al inicio">
-          <img class="brand-logo" src="assets/petgo-horizontal.png" alt="PetGo" width="720" height="205" />
+        <a class="brand" href="#inicio" aria-label="GoPet · volver al inicio">
+          <img class="brand-logo" src="assets/gopet-horizontal.png" alt="GoPet" width="720" height="204" />
         </a>
         <nav class="desktop-nav" aria-label="Navegación principal">
           <a href="#viajes">Viajes</a>
@@ -132,7 +132,7 @@
           </div>
           <div class="photo-collection" aria-label="Imágenes del vehículo y espacio para una próxima foto">
             <figure class="vehicle-photo photo-main">
-              <img src="assets/vehiculo-petgo-editado.jpg" alt="Camioneta de PetGo vista de costado y desde atrás" width="1672" height="941" loading="lazy" />
+              <img src="assets/vehiculo-gopet-editado.jpg" alt="Camioneta de GoPet vista de costado y desde atrás" width="1672" height="941" loading="lazy" />
               <figcaption>Nuestra camioneta</figcaption>
             </figure>
             <figure class="vehicle-photo photo-detail">
@@ -190,7 +190,7 @@
     </main>
 
     <footer class="footer wrap">
-      <p><img class="footer-logo" src="assets/petgo-horizontal.png" alt="PetGo" width="720" height="205" /><br />Traslados de mascotas · Montevideo, Uruguay</p>
+      <p><img class="footer-logo" src="assets/gopet-horizontal.png" alt="GoPet" width="720" height="204" /><br />Traslados de mascotas · Montevideo, Uruguay</p>
       <nav aria-label="Enlaces del pie"><a href="#inicio">Inicio</a><a href="#viajes">Viajes</a><a href="#preguntas">Preguntas</a></nav>
       <div class="footer-socials" role="group" aria-label="Canales de contacto; enlaces pendientes">
         <span class="footer-social-icon" role="img" aria-label="Instagram" title="Instagram: enlace pendiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
@@ -203,7 +203,7 @@
       <div class="trip-dialog-head">
         <div>
           <h2 id="trip-dialog-title">Contanos el viaje</h2>
-          <p>Hasta 2 perros y 2 gatos están incluidos en el viaje.</p>
+          <small>Hasta 2 perros y 2 gatos incluidos.</small>
         </div>
         <button class="dialog-close" type="button" data-trip-close aria-label="Cerrar formulario"><span aria-hidden="true"></span></button>
       </div>
@@ -271,7 +271,6 @@
           </div>
         </div>
         <div class="trip-form-footer">
-          <p>La consulta se abrirá en WhatsApp. El viaje se confirma cuando lo coordinemos.</p>
           <button class="button" type="submit">Cotizar viaje</button>
         </div>
       </form>
@@ -284,11 +283,13 @@
           <iframe data-route-map-frame title="Indicaciones de Google Maps desde el origen hasta el destino" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <p data-route-map-note>El mapa muestra el traslado entre las direcciones indicadas.</p>
         </section>
-        <p>Revisá los datos y consultá disponibilidad por WhatsApp. El precio final se confirma al coordinar.</p>
-        <textarea data-trip-summary readonly aria-label="Datos de la consulta"></textarea>
-        <p class="trip-copy-status" data-copy-status role="status" aria-live="polite"></p>
+        <div data-trip-message hidden>
+          <p>Revisá los datos y consultá disponibilidad por WhatsApp. El precio final se confirma al coordinar.</p>
+          <textarea data-trip-summary readonly aria-label="Datos de la consulta"></textarea>
+          <p class="trip-copy-status" data-copy-status role="status" aria-live="polite"></p>
+        </div>
         <div class="trip-result-actions">
-          <button class="button button-light" type="button" data-trip-edit>Editar datos</button>
+          <button class="button button-light" type="button" data-trip-edit>Editar cotización</button>
           <button class="button" type="button" data-trip-copy>Copiar consulta</button>
           <a class="button" data-trip-whatsapp href="#" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>
         </div>

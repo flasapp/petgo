@@ -2,7 +2,7 @@ const tripDialog = document.querySelector('#trip-dialog');
 
 if (tripDialog) {
   const dialogTitle = tripDialog.querySelector('#trip-dialog-title');
-  const dialogIntro = tripDialog.querySelector('.trip-dialog-head p');
+  const dialogIntro = tripDialog.querySelector('.trip-dialog-head small');
   const form = tripDialog.querySelector('#trip-form');
   const origin = form.querySelector('#trip-origin');
   const destination = form.querySelector('#trip-destination');
@@ -17,6 +17,7 @@ if (tripDialog) {
   const returnInput = form.querySelector('#trip-return');
   const result = tripDialog.querySelector('[data-trip-result]');
   const resultTitle = tripDialog.querySelector('[data-trip-result-title]');
+  const messagePreview = tripDialog.querySelector('[data-trip-message]');
   const summary = tripDialog.querySelector('[data-trip-summary]');
   const copyStatus = tripDialog.querySelector('[data-copy-status]');
   const copyButton = tripDialog.querySelector('[data-trip-copy]');
@@ -30,9 +31,12 @@ if (tripDialog) {
   const turnstileContainer = form.querySelector('[data-turnstile-widget]');
   const checkIsHuman = document.body.dataset.checkIsHuman !== 'false';
   const turnstileSiteKey = document.body.dataset.turnstileSiteKey;
+  const enableMap = document.body.dataset.enableMap === 'true';
+  const enableMessage = document.body.dataset.enableMessage === 'true';
   const isUnprocessedPreview = document.body.dataset.checkIsHuman === '__CHECK_IS_HUMAN__'
     || turnstileSiteKey === '__TURNSTILE_SITE_KEY__';
   humanCheck.hidden = !checkIsHuman;
+  messagePreview.hidden = !enableMessage;
   let turnstileWidgetId;
   let humanVerifiedUntil = 0;
   const whatsappNumber = document.body.dataset.whatsappNumber;
@@ -56,6 +60,8 @@ if (tripDialog) {
     },
   });
   let opener = null;
+  let dialogMotion = null;
+  let dialogClosing = false;
   const moneyFormatter = new Intl.NumberFormat('es-UY', { maximumFractionDigits: 0 });
   let estimateController = null;
   let activeLoader = null;
@@ -205,7 +211,7 @@ if (tripDialog) {
   }
 
   function setQuoteActionsPending(pending) {
-    copyButton.hidden = pending;
+    copyButton.hidden = pending || !enableMessage;
     whatsappLink.hidden = pending || Boolean(fuelResult.querySelector('[data-trip-whatsapp-primary]'));
   }
 
@@ -220,7 +226,7 @@ if (tripDialog) {
     loader.innerHTML = `
       <div class="trip-loader-heading">
         <strong>Estamos trazando tu recorrido</strong>
-        <span>PetGo en camino</span>
+        <span>GoPet en camino</span>
       </div>
       <div class="trip-loader-scene" aria-hidden="true">
         <span class="trip-loader-sun"></span>
@@ -337,7 +343,7 @@ if (tripDialog) {
     return result;
   }
 
-  function showFuel(data) {
+  function showFuel(data, travelDate) {
     fuelResult.replaceChildren();
     const quote = document.createElement('div');
     quote.className = 'trip-quote';
@@ -366,6 +372,12 @@ if (tripDialog) {
     const routeTitle = document.createElement('h4');
     routeTitle.textContent = 'Tu trayecto';
     route.append(routeTitle);
+    if (!enableMessage) {
+      const travelDateLine = document.createElement('small');
+      travelDateLine.className = 'trip-quote-departure';
+      travelDateLine.textContent = `Salida: ${formatDate(travelDate)} a las ${flatpickr.formatDate(travelDate, 'H:i')}`;
+      route.append(travelDateLine);
+    }
     const stops = document.createElement('ol');
     stops.className = 'trip-quote-stops';
     const customerStops = [origin.value.trim(), destination.value.trim()];
@@ -402,7 +414,7 @@ if (tripDialog) {
   }
 
   function showRouteMap(data) {
-    if (!data.mapUrl) return;
+    if (!enableMap || !data.mapUrl) return;
     routeMapFrame.src = data.mapUrl;
     routeMapNote.textContent = data.roundTrip
       ? 'El mapa muestra la ida. La vuelta también está contemplada en la cotización.'
@@ -460,21 +472,85 @@ if (tripDialog) {
     if (needsHumanCheck()) requireHumanCheck();
   }
 
+  function buttonToDialogTransform() {
+    const buttonRect = opener?.getBoundingClientRect();
+    const dialogRect = tripDialog.getBoundingClientRect();
+    if (!buttonRect?.width || !dialogRect.width) return 'scale(.9)';
+    const x = buttonRect.left + buttonRect.width / 2 - dialogRect.left - dialogRect.width / 2;
+    const y = buttonRect.top + buttonRect.height / 2 - dialogRect.top - dialogRect.height / 2;
+    const scale = Math.max(.24, Math.min(.55, buttonRect.width / dialogRect.width));
+    return `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+  }
+
+  function prefersReducedDialogMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      && !document.documentElement.classList.contains('ui-motion-preview');
+  }
+
+  function animateDialog(keyframes, duration, easing) {
+    if (!tripDialog.animate) return Promise.resolve();
+    tripDialog.style.willChange = 'transform, opacity';
+    const motion = tripDialog.animate(keyframes, { duration, easing, fill: 'both' });
+    dialogMotion = motion;
+    return motion.finished.catch(() => {}).finally(() => {
+      if (dialogMotion === motion) {
+        motion.cancel();
+        dialogMotion = null;
+        tripDialog.style.willChange = '';
+      }
+    });
+  }
+
+  function closeTripDialog() {
+    if (!tripDialog.open || dialogClosing) return;
+    dialogClosing = true;
+    const reducedMotion = prefersReducedDialogMotion();
+    const currentTransform = getComputedStyle(tripDialog).transform;
+    const currentOpacity = getComputedStyle(tripDialog).opacity;
+    dialogMotion?.cancel();
+    tripDialog.classList.add('is-closing');
+    const keyframes = reducedMotion
+      ? [{ opacity: currentOpacity }, { opacity: 0 }]
+      : [
+        { transform: currentTransform, opacity: currentOpacity },
+        { transform: buttonToDialogTransform(), opacity: 0 },
+      ];
+    animateDialog(keyframes, reducedMotion ? 130 : 230, 'cubic-bezier(.4, 0, 1, 1)')
+      .then(() => { if (tripDialog.open) tripDialog.close(); });
+  }
+
   document.querySelectorAll('[data-trip-open]').forEach((button) => {
     button.addEventListener('click', () => {
       opener = button;
       resetForm();
       tripDialog.showModal();
       renderHumanCheck();
-      origin.focus();
+      const reducedMotion = prefersReducedDialogMotion();
+      const keyframes = reducedMotion
+        ? [{ opacity: 0 }, { opacity: 1 }]
+        : [
+          { transform: buttonToDialogTransform(), opacity: 0 },
+          { transform: 'translate3d(0, 0, 0) scale(1)', opacity: 1 },
+        ];
+      animateDialog(keyframes, reducedMotion ? 170 : 480, 'cubic-bezier(.16, 1, .3, 1)');
+      origin.focus({ preventScroll: true });
     });
   });
 
-  tripDialog.querySelector('[data-trip-close]').addEventListener('click', () => tripDialog.close());
+  tripDialog.querySelector('[data-trip-close]').addEventListener('click', closeTripDialog);
   tripDialog.addEventListener('click', (event) => {
-    if (event.target === tripDialog) tripDialog.close();
+    if (event.target === tripDialog) closeTripDialog();
+  });
+  tripDialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeTripDialog();
   });
   tripDialog.addEventListener('close', () => {
+    dialogMotion?.cancel();
+    dialogMotion = null;
+    dialogClosing = false;
+    tripDialog.classList.remove('is-closing');
+    tripDialog.style.willChange = '';
     stopEstimate();
     cancelPlaceSearches.forEach((cancel) => cancel());
     opener?.focus();
@@ -536,7 +612,7 @@ if (tripDialog) {
     }
 
     const messageLines = [
-      'Hola, quiero consultar un traslado con PetGo.',
+      'Hola, hice esta cotización en la web. Quisiera coordinar el traslado.',
       `Origen: ${origin.value.trim()}`,
       `Destino: ${destination.value.trim()}`,
       `Salida: ${formatDate(selectedDeparture)} a las ${flatpickr.formatDate(selectedDeparture, 'H:i')}`,
@@ -600,7 +676,7 @@ if (tripDialog) {
       const estimate = await readEstimateStream(response, (progress) => loader.update(progress));
       await loader.finish(controller.signal);
       if (!controller.signal.aborted) {
-        showFuel(estimate);
+        showFuel(estimate, selectedDeparture);
         updateSummary(estimate.sale?.priceUYU);
         resultTitle.textContent = 'Precio y recorrido';
       }
@@ -610,7 +686,7 @@ if (tripDialog) {
         const verificationProblem = checkIsHuman && /verific|límite de consultas/i.test(error.message);
         if (verificationProblem) requireHumanCheck(error.message);
         fuelResult.textContent = verificationProblem
-          ? `${error.message} Elegí «Editar datos» para verificarte de nuevo, o consultá por WhatsApp.`
+          ? `${error.message} Elegí «Editar cotización» para verificarte de nuevo, o consultá por WhatsApp.`
           : `${error.message} Podés consultar el viaje por WhatsApp igualmente.`;
       }
     } finally {

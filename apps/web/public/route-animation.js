@@ -133,7 +133,7 @@ if (routeStage) {
     setStatus(step);
 
     if (state === 'reduced') {
-      replay.textContent = 'Activar recorrido con scroll';
+      replay.textContent = 'Activar animaciones y recorrido';
     } else if (state === 'complete') {
       replay.textContent = 'Repetir recorrido';
     }
@@ -202,6 +202,7 @@ if (routeStage) {
     if (reducedMotion.matches && !motionOptIn) {
       motionOptIn = true;
       feature.classList.add('motion-opt-in');
+      window.dispatchEvent(new Event('gopet:motion-opt-in'));
       lastState = '';
       measure();
     }
@@ -215,12 +216,13 @@ if (routeStage) {
   });
 
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  window.addEventListener('petgo:navigation-start', () => { routeActive = false; });
+  window.addEventListener('gopet:navigation-start', () => { routeActive = false; });
   window.addEventListener('resize', measure);
   compact.addEventListener('change', setGeometry);
   reducedMotion.addEventListener('change', () => {
     motionOptIn = false;
     feature.classList.remove('motion-opt-in');
+    if (!localPreview) document.documentElement.classList.remove('ui-motion-preview', 'faq-preview-motion');
     lastState = '';
     measure();
   });

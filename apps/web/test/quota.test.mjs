@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { createQuotaStore } from '../scripts/quota.mjs';
 
 test('reserves and persists a separate limit for each Google request type', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'petgo-quota-'));
+  const directory = await mkdtemp(join(tmpdir(), 'gopet-quota-'));
   try {
     const file = join(directory, 'usage.json');
     const reserve = createQuotaStore(file, 2);

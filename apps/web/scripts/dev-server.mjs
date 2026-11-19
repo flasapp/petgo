@@ -105,18 +105,21 @@ async function estimateTrip(input, onProgress = () => {}) {
     waitingUYU: labor.waitingUYU,
     totalUYU: fuel.costUYU + labor.totalUYU,
   };
-  const mapUrl = new URL('https://www.google.com/maps/embed/v1/directions');
-  mapUrl.search = new URLSearchParams({
-    key: googleKey,
-    origin: `place_id:${origin.id}`,
-    destination: `place_id:${destination.id}`,
-    mode: 'driving',
-    language: 'es',
-    region: 'uy',
-  }).toString();
+  let mapUrl;
+  if (config.enableMap) {
+    mapUrl = new URL('https://www.google.com/maps/embed/v1/directions');
+    mapUrl.search = new URLSearchParams({
+      key: googleKey,
+      origin: `place_id:${origin.id}`,
+      destination: `place_id:${destination.id}`,
+      mode: 'driving',
+      language: 'es',
+      region: 'uy',
+    }).toString();
+  }
   return {
     zone,
-    mapUrl: mapUrl.href,
+    ...(mapUrl ? { mapUrl: mapUrl.href } : {}),
     legs: legs.map(({ label, distanceMeters, durationSeconds: seconds }) => ({ label, meters: distanceMeters, seconds })),
     ...fuel,
     durationSeconds,
@@ -207,6 +210,8 @@ createServer(async (request, response) => {
       ? (await readFile(file, 'utf8'))
         .replace('__WHATSAPP_NUMBER__', config.whatsappNumber)
         .replace('__CHECK_IS_HUMAN__', String(config.humanCheckEnabled))
+        .replace('__ENABLE_MAP__', String(config.enableMap))
+        .replace('__ENABLE_MESSAGE__', String(config.enableMessage))
         .replace('__TURNSTILE_SITE_KEY__', config.turnstileSiteKey || '')
       : await readFile(file);
     response.writeHead(200, {
@@ -218,6 +223,6 @@ createServer(async (request, response) => {
     response.writeHead(error.code === 'ENOENT' || error.code === 'EISDIR' ? 404 : 500).end();
   }
 }).listen(port, host, () => {
-  console.log(`PetGo disponible en http://${host}:${port}`);
+  console.log(`GoPet disponible en http://${host}:${port}`);
   if (!googleKey) console.warn('Google Maps desactivado: pegá la clave en .env y reiniciá el servidor.');
 });

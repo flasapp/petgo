@@ -1,6 +1,6 @@
 # Lo que sabemos
 
-Actualizado: 2026-11-14.
+Actualizado: 2026-11-19.
 
 ## Confirmado por el emprendedor
 
@@ -18,12 +18,12 @@ Actualizado: 2026-11-14.
 - La primera web se dirigirá principalmente a tutores particulares y destacará traslados dentro de Montevideo.
 - La acción principal de la primera versión de la web abrirá WhatsApp para consultar un viaje.
 - Prefiere verdes pastel cercanos a `#9CE6BD` y un estilo profesional e informal como las referencias visuales aportadas.
-- Indicó **PetGo** como nombre comercial para el logo.
+- Eligió **GoPet** como nombre comercial de trabajo el 2026-11-19 porque el dominio del nombre anterior estaba en uso.
 - Quiere trabajar tanto el negocio como la marca, la web, los cobros y el marketing.
 - Este repositorio será el lugar para organizar la documentación Markdown y, eventualmente, el trabajo tecnológico.
 
 ## Por definir
 
-Los límites concretos de cobertura, el modelo/año y medidas del vehículo, registro de las pruebas del equipamiento, método preciso de sujeción de los transportines, ventilación y temperatura, tamaños admitidos, la oferta, los precios, la disponibilidad registral y digital de PetGo, la fecha de lanzamiento y las herramientas digitales.
+Los límites concretos de cobertura, el modelo/año y medidas del vehículo, registro de las pruebas del equipamiento, método preciso de sujeción de los transportines, ventilación y temperatura, tamaños admitidos, la oferta, los precios, la disponibilidad registral y digital de GoPet, la fecha de lanzamiento y las herramientas digitales.
 
 Hasta conocer esos datos, los documentos plantean opciones y preguntas. El cupo de 2 perros y 2 gatos y las pruebas del equipamiento proceden de la declaración del emprendedor; todavía falta documentar medidas y condiciones de admisión. Ninguna tarifa, política o requisito legal se considera aprobado.

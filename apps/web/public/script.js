@@ -35,7 +35,7 @@ document.querySelectorAll('.site-header a[href^="#"]').forEach((link) => {
     event.preventDefault();
     cancelNavScroll();
     if (window.location.hash !== hash) window.history.pushState(null, '', hash);
-    window.dispatchEvent(new Event('petgo:navigation-start'));
+    window.dispatchEvent(new Event('gopet:navigation-start'));
 
     const routeFeature = document.querySelector('[data-route-feature]');
     const routeEnd = routeFeature?.getBoundingClientRect().bottom + window.scrollY;
@@ -123,7 +123,7 @@ document.querySelectorAll('.faq-grid details').forEach((details) => {
     animation = details.animate(
       [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
       {
-        duration: faqReducedMotion.matches && !localPreview ? 220 : opening ? 420 : 320,
+        duration: faqReducedMotion.matches && !document.documentElement.classList.contains('faq-preview-motion') ? 220 : opening ? 420 : 320,
         easing: opening ? 'cubic-bezier(.16, 1, .3, 1)' : 'ease-in-out'
       }
     );
@@ -162,7 +162,10 @@ if (vehicleSection) {
   scheduleVehicleCheck();
 }
 
-if ('IntersectionObserver' in window && (localPreview || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+let sectionMotionObserved = false;
+function startSectionMotion() {
+  if (sectionMotionObserved || !('IntersectionObserver' in window)) return;
+  sectionMotionObserved = true;
   const sectionObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
@@ -184,3 +187,12 @@ if ('IntersectionObserver' in window && (localPreview || !window.matchMedia('(pr
     sectionObserver.observe(coverageSection.querySelector('h2'));
   }
 }
+
+if (localPreview || !faqReducedMotion.matches) startSectionMotion();
+faqReducedMotion.addEventListener('change', () => {
+  if (!faqReducedMotion.matches) startSectionMotion();
+});
+window.addEventListener('gopet:motion-opt-in', () => {
+  document.documentElement.classList.add('ui-motion-preview', 'faq-preview-motion');
+  startSectionMotion();
+});
