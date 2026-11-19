@@ -1,7 +1,4 @@
 const whatsappNumber = document.body.dataset.whatsappNumber;
-const localPreview = window.location.protocol === 'file:'
-  || ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
-if (localPreview) document.documentElement.classList.add('ui-motion-preview');
 
 document.querySelectorAll('[data-whatsapp]').forEach((button) => {
   button.addEventListener('click', () => {
@@ -13,6 +10,7 @@ let navScrollFrame = 0;
 const cancelNavScroll = (anchor) => {
   if (navScrollFrame) window.cancelAnimationFrame(navScrollFrame);
   navScrollFrame = 0;
+  const wasScrolling = document.documentElement.classList.contains('is-nav-scrolling');
   const bypassingRoute = document.documentElement.classList.contains('is-nav-bypassing-route');
   const visualAnchor = anchor instanceof Element
     ? anchor
@@ -23,6 +21,7 @@ const cancelNavScroll = (anchor) => {
     window.scrollTo(0, window.scrollY + visualAnchor.getBoundingClientRect().top - anchorTop);
   }
   document.documentElement.classList.remove('is-nav-scrolling');
+  if (wasScrolling) window.dispatchEvent(new Event('gopet:navigation-end'));
 };
 
 document.querySelectorAll('.site-header a[href^="#"]').forEach((link) => {
@@ -90,7 +89,6 @@ window.addEventListener('keydown', (event) => {
 });
 
 const faqReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (localPreview) document.documentElement.classList.add('faq-preview-motion');
 document.querySelectorAll('.faq-grid details').forEach((details) => {
   const summary = details.querySelector('summary');
   const answer = details.querySelector('p');
@@ -123,7 +121,7 @@ document.querySelectorAll('.faq-grid details').forEach((details) => {
     animation = details.animate(
       [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
       {
-        duration: faqReducedMotion.matches && !document.documentElement.classList.contains('faq-preview-motion') ? 220 : opening ? 420 : 320,
+        duration: faqReducedMotion.matches ? 220 : opening ? 420 : 320,
         easing: opening ? 'cubic-bezier(.16, 1, .3, 1)' : 'ease-in-out'
       }
     );
@@ -188,11 +186,7 @@ function startSectionMotion() {
   }
 }
 
-if (localPreview || !faqReducedMotion.matches) startSectionMotion();
+if (!faqReducedMotion.matches) startSectionMotion();
 faqReducedMotion.addEventListener('change', () => {
   if (!faqReducedMotion.matches) startSectionMotion();
-});
-window.addEventListener('gopet:motion-opt-in', () => {
-  document.documentElement.classList.add('ui-motion-preview', 'faq-preview-motion');
-  startSectionMotion();
 });

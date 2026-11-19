@@ -92,20 +92,20 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .route-stage.is-complete .arrival-ring { animation: arrival-pulse .8s ease-out 2; transform-box: fill-box; transform-origin: center; }
 @keyframes arrival-pulse { 0% { transform: scale(.8); opacity: .45; } 100% { transform: scale(1.65); opacity: 0; } }
 .journey-grid { display: grid; grid-template-columns: 1.17fr .83fr; gap: 24px; margin-top: 27px; }
-.journey-card { position: relative; isolation: isolate; min-height: 218px; overflow: hidden; border-radius: 21px; display: flex; flex-direction: column; transition: transform .5s ease, box-shadow .5s ease; }
+.journey-card { position: relative; isolation: isolate; min-height: 218px; overflow: hidden; border-radius: 21px; display: flex; flex-direction: column; transition: background-color .5s ease, transform .5s ease, box-shadow .5s ease; }
 .journey-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(circle at 88% 5%, rgba(255,255,255,.78), transparent 58%); opacity: 0; pointer-events: none; transition: opacity .5s ease; }
 .journey-primary { background: var(--mist); }
 .journey-secondary { background: #fff1e9; }
+.journey-primary:hover, .journey-primary:focus-within { background-color: #d7f0e2; }
+.journey-secondary:hover, .journey-secondary:focus-within { background-color: #fbe5d9; }
 .journey-content { position: relative; z-index: 1; padding: 34px 36px 37px; flex: 1; }
 .journey-card:focus-within { box-shadow: 0 18px 36px rgba(36,58,49,.14); }
 .journey-card:focus-within::before { opacity: 1; }
 .journey-card .text-action { transition: color .5s ease; }
 .journey-card .text-action[data-trip-open]::after { transition: transform .5s ease; }
-@media (hover: hover) and (pointer: fine) {
-  .journey-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(36,58,49,.14); }
-  .journey-card:hover::before { opacity: 1; }
-  .journey-card:hover .text-action[data-trip-open]::after { transform: translateX(4px) rotate(45deg); }
-}
+.journey-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(36,58,49,.14); }
+.journey-card:hover::before { opacity: 1; }
+.journey-card:hover .text-action[data-trip-open]::after { transform: translateX(4px) rotate(45deg); }
 .journey-content h3 { margin-bottom: 9px; font-size: 32px; }
 .journey-content p { max-width: 500px; margin-bottom: 20px; }
 .text-action { padding: 0 0 4px; border: 0; border-bottom: 2px solid currentColor; background: transparent; color: var(--action); font-weight: 800; }
@@ -472,19 +472,21 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root:not(.ui-motion-preview) .trip-dialog[open]::backdrop,
-  :root:not(.ui-motion-preview) .trip-dialog.is-closing::backdrop { animation-duration: .15s; }
+  .trip-dialog[open]::backdrop, .trip-dialog.is-closing::backdrop { animation-duration: .15s; }
   html { scroll-behavior: auto; }
   .button { transition: none; }
   .menu-icon span { transition: none; }
   .mobile-menu[open] nav, .mobile-menu[open] nav > * { animation: none; }
-  :root:not(.ui-motion-preview) .journey-card, :root:not(.ui-motion-preview) .journey-card::before, :root:not(.ui-motion-preview) .journey-card .text-action, :root:not(.ui-motion-preview) .journey-card .text-action[data-trip-open]::after { transition: none; }
-  :root:not(.ui-motion-preview) .journey-card:hover { transform: none; }
-  :root:not(.ui-motion-preview) .process .steps li.is-motion-ready, :root:not(.ui-motion-preview) .coverage-section.is-motion-ready.is-in-view .coverage-inner h2, :root:not(.ui-motion-preview) .coverage-section.is-motion-ready.is-in-view .coverage-inner p, :root:not(.ui-motion-preview) .coverage-section.is-motion-ready.is-in-view .coverage-inner .button { opacity: 1; transform: none; clip-path: none; transition: none; animation: none; }
+  .journey-card { transition: background-color .2s ease, box-shadow .2s ease; }
+  .journey-card::before { transition: opacity .2s ease; }
+  .journey-card:hover { transform: none; }
+  .journey-card .text-action[data-trip-open]::after { transition: none; }
+  .journey-card:hover .text-action[data-trip-open]::after { transform: rotate(45deg); }
+  .process .steps li.is-motion-ready, .coverage-section.is-motion-ready.is-in-view .coverage-inner h2, .coverage-section.is-motion-ready.is-in-view .coverage-inner p, .coverage-section.is-motion-ready.is-in-view .coverage-inner .button { opacity: 1; transform: none; clip-path: none; transition: none; animation: none; }
   .trip-loader-vehicle, .trip-loader-trail { transition: none; }
-  :root:not(.faq-preview-motion) .faq-grid details { transition-duration: .2s; }
-  :root:not(.faq-preview-motion) .faq-grid details p { transform: none; transition: opacity .2s ease; }
-  :root:not(.faq-preview-motion) .plus-icon { transition-duration: .2s; }
+  .faq-grid details { transition-duration: .2s; }
+  .faq-grid details p { transform: none; transition: opacity .2s ease; }
+  .plus-icon { transition-duration: .2s; }
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-copy h2,
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-copy > p,
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-lines p,
@@ -497,8 +499,5 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .vehicle-section.is-motion-ready.is-in-view .vehicle-photo,
   .vehicle-section.is-motion-ready.is-in-view .photo-placeholder,
   .vehicle-section.is-motion-ready.is-in-view .vehicle-photo figcaption { animation-name: vehicle-part-enter-gentle; animation-duration: .66s; }
-  .route-feature.is-scroll-ready:not(.motion-opt-in) { height: auto; }
-  .route-feature.is-scroll-ready:not(.motion-opt-in) .route-pin { position: static; }
-  .route-feature:not(.motion-opt-in) .route-replay { background: var(--action); color: white; }
   .route-stage.is-complete .arrival-ring { animation: none; }
 }

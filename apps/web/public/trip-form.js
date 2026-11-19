@@ -483,8 +483,7 @@ if (tripDialog) {
   }
 
   function prefersReducedDialogMotion() {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      && !document.documentElement.classList.contains('ui-motion-preview');
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   function animateDialog(keyframes, duration, easing) {

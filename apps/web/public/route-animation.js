@@ -16,8 +16,6 @@ if (routeStage) {
   const bubble = routeStage.querySelector('[data-route-bubble]');
   const compact = window.matchMedia('(max-width: 540px)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const localPreview = window.location.protocol === 'file:'
-    || ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
   const paths = {
     wide: 'M165 310C280 265 330 255 430 262S610 290 685 245 775 190 835 160',
     compact: 'M200 515C275 465 340 430 410 440S550 455 610 400 705 320 790 290',
@@ -28,7 +26,6 @@ if (routeStage) {
   let scrollEnd = 1;
   let frame = 0;
   let routeActive = false;
-  let motionOptIn = localPreview;
   let lastState = '';
   let furthestProgress = 0;
   let lastBubble = '';
@@ -52,7 +49,7 @@ if (routeStage) {
     const next = document.createElement('span');
     next.textContent = stepDescriptions[step];
 
-    if (reducedMotion.matches && !motionOptIn) {
+    if (reducedMotion.matches) {
       status.replaceChildren(next);
       return;
     }
@@ -128,26 +125,16 @@ if (routeStage) {
     lastState = stateKey;
     routeStage.classList.toggle('is-complete', state === 'complete');
     routeStage.classList.toggle('is-playing', state === 'travelling');
-    replay.hidden = state !== 'complete' && state !== 'reduced';
+    replay.hidden = state !== 'complete';
 
     setStatus(step);
 
-    if (state === 'reduced') {
-      replay.textContent = 'Activar animaciones y recorrido';
-    } else if (state === 'complete') {
-      replay.textContent = 'Repetir recorrido';
-    }
+    if (state === 'complete') replay.textContent = 'Repetir recorrido';
   }
 
   function update() {
     frame = 0;
     if (document.documentElement.classList.contains('is-nav-scrolling')) return;
-    if (reducedMotion.matches && !motionOptIn) {
-      paint(0);
-      setState('reduced', 0);
-      return;
-    }
-
     if (window.scrollY >= scrollStart && window.scrollY <= scrollEnd) routeActive = true;
     if (window.scrollY > scrollEnd && !routeActive) {
       paint(furthestProgress);
@@ -199,13 +186,6 @@ if (routeStage) {
   }
 
   replay.addEventListener('click', () => {
-    if (reducedMotion.matches && !motionOptIn) {
-      motionOptIn = true;
-      feature.classList.add('motion-opt-in');
-      window.dispatchEvent(new Event('gopet:motion-opt-in'));
-      lastState = '';
-      measure();
-    }
     const previousScrollBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, scrollStart);
@@ -217,17 +197,10 @@ if (routeStage) {
 
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
   window.addEventListener('gopet:navigation-start', () => { routeActive = false; });
+  window.addEventListener('gopet:navigation-end', scheduleUpdate);
   window.addEventListener('resize', measure);
   compact.addEventListener('change', setGeometry);
-  reducedMotion.addEventListener('change', () => {
-    motionOptIn = false;
-    feature.classList.remove('motion-opt-in');
-    if (!localPreview) document.documentElement.classList.remove('ui-motion-preview', 'faq-preview-motion');
-    lastState = '';
-    measure();
-  });
 
   feature.classList.add('is-scroll-ready');
-  if (motionOptIn) feature.classList.add('motion-opt-in');
   setGeometry();
 }

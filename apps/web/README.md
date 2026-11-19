@@ -65,7 +65,7 @@ La escena de viaje de `public/index.html` combina un recorrido SVG original con 
 
 Un globo de conversación acompaña al vehículo en tres momentos: en Origen pregunta desde dónde salen las mascotas, en el punto medio cuántas viajan y en Destino hacia dónde van. Entre esos puntos se oculta para despejar el recorrido. El texto bajo el mapa explica cada dato según la etapa alcanzada y conserva esa explicación hasta la siguiente etapa. El título permanece visible durante el recorrido.
 
-En la vista previa local (`localhost`, `127.0.0.1` o un archivo local) el recorrido queda activado para poder probarlo incluso si el navegador informa que prefiere reducir movimiento. En una web publicada, esa preferencia mantiene la camioneta quieta en Origen y ofrece el botón «Activar recorrido con scroll» para optar voluntariamente por la animación.
+El recorrido de la camioneta sigue el scroll tanto en la vista local como en la web publicada. La preferencia de reducir movimiento mantiene los cambios de texto sin animación, pero no altera el recorrido.
 
 Prompts finales usados con la herramienta integrada `image_gen`:
 
