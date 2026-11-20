@@ -21,7 +21,7 @@ const cancelNavScroll = (anchor) => {
     window.scrollTo(0, window.scrollY + visualAnchor.getBoundingClientRect().top - anchorTop);
   }
   document.documentElement.classList.remove('is-nav-scrolling');
-  if (wasScrolling) window.dispatchEvent(new Event('gopet:navigation-end'));
+  if (wasScrolling) window.dispatchEvent(new Event('petway:navigation-end'));
 };
 
 document.querySelectorAll('.site-header a[href^="#"]').forEach((link) => {
@@ -34,7 +34,7 @@ document.querySelectorAll('.site-header a[href^="#"]').forEach((link) => {
     event.preventDefault();
     cancelNavScroll();
     if (window.location.hash !== hash) window.history.pushState(null, '', hash);
-    window.dispatchEvent(new Event('gopet:navigation-start'));
+    window.dispatchEvent(new Event('petway:navigation-start'));
 
     const routeFeature = document.querySelector('[data-route-feature]');
     const routeEnd = routeFeature?.getBoundingClientRect().bottom + window.scrollY;

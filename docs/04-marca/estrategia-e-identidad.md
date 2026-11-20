@@ -1,12 +1,12 @@
 # Estrategia e identidad de marca
 
-Estado: **GoPet como nombre de trabajo y logo PNG actualizado; estrategia completa por definir**.
+Estado: **PetWay como nombre de trabajo y logo PNG actualizado; estrategia completa por definir**.
 
 ## Estrategia
 
 | Elemento | Pregunta de trabajo |
 | --- | --- |
-| Nombre | **GoPet**, elegido por el emprendedor el 2026-11-19; falta comprobar disponibilidad y recordación. |
+| Nombre | **PetWay**, elegido por el emprendedor el 2026-11-20; falta comprobar disponibilidad y recordación. |
 | Público | ¿A quién queremos resultar especialmente útiles? |
 | Posicionamiento | ¿Por qué elegirían este servicio? ¿Qué evidencia lo respalda? |
 | Promesa | ¿Qué compromiso concreto podemos sostener en cada viaje? |
@@ -15,7 +15,7 @@ Estado: **GoPet como nombre de trabajo y logo PNG actualizado; estrategia comple
 
 ## Identidad visual
 
-Definir logo y versiones, colores con códigos, tipografías y licencias, uso de imágenes, iconos, contraste y aplicaciones en vehículo, web y redes. El emprendedor eligió una [dirección verde pastel y de trato profesional e informal](direccion-visual-verde-pastel.md) y cambió el nombre de trabajo a **GoPet**. Rechazó el primer símbolo vectorial y pidió un [logo PNG transparente con vehículo y mascotas](activos/logo/README.md), cuyo rótulo ya se actualizó; colores, aplicaciones y diseño final siguen en prueba. Registrar elecciones y motivos en [Decisiones de marca](decisiones.md).
+Definir logo y versiones, colores con códigos, tipografías y licencias, uso de imágenes, iconos, contraste y aplicaciones en vehículo, web y redes. El emprendedor eligió una [dirección verde pastel y de trato profesional e informal](direccion-visual-verde-pastel.md) y cambió el nombre de trabajo a **PetWay**. Rechazó el primer símbolo vectorial y pidió un [logo PNG transparente con vehículo y mascotas](activos/logo/README.md), cuyo rótulo ya se actualizó; colores, aplicaciones y diseño final siguen en prueba. Registrar elecciones y motivos en [Decisiones de marca](decisiones.md).
 
 ## Primeras comprobaciones
 

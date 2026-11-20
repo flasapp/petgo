@@ -1,6 +1,6 @@
 .env
 .env.*
-.gopet-local/
+.petway-local/
 node_modules/
 test/
 README.md

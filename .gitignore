@@ -1,4 +1,4 @@
-.gopet-local/
+.petway-local/
 node_modules/
 .env
 .env.*

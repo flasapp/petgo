@@ -36,12 +36,12 @@ Los globos hacen tres preguntas breves: «¿Desde dónde salen?», «¿Cuántos 
 
 ## Consulta desde las tarjetas de viaje
 
-Las tarjetas dicen «Montevideo» / «Viajes y traslados dentro de Montevideo.» e «Interior» / «Viajes y traslados en todo el país.». Ambas abren el mismo formulario con origen, destino, fecha y hora de salida, ida y vuelta y, si corresponde, minutos adicionales de espera después de los 60 incluidos. El campo de cantidad de mascotas está comentado y el encabezado recuerda que hasta 2 perros y 2 gatos están incluidos. El calendario usa el estilo de GoPet, avanza de a un minuto y no permite seleccionar fechas pasadas.
+Las tarjetas dicen «Montevideo» / «Viajes y traslados dentro de Montevideo.» e «Interior» / «Viajes y traslados en todo el país.». Ambas abren el mismo formulario con origen, destino, fecha y hora de salida, ida y vuelta y, si corresponde, minutos adicionales de espera después de los 60 incluidos. El campo de cantidad de mascotas está comentado y el encabezado recuerda que hasta 2 perros y 2 gatos están incluidos. El calendario usa el estilo de PetWay, avanza de a un minuto y no permite seleccionar fechas pasadas.
 
 Al pulsar «Cotizar viaje», la maqueta muestra el cálculo disponible y prepara un mensaje de WhatsApp al número del emprendimiento (`099553986`, Uruguay; `+59899553986` en formato internacional) con los datos del viaje y las preguntas «¿Tienen disponibilidad para este viaje? ¿Cuánto cuesta?». La persona revisa y envía el mensaje desde WhatsApp. El modal conserva un enlace para reabrir el chat y una opción para copiar el texto. La web no confirma una reserva; los viajes al interior y los recorridos que no se pueden calcular requieren cotización manual.
 
 ## Así coordinamos tu viaje
 
-La sección muestra tres pasos sin repetir los campos del formulario: la persona envía la consulta por WhatsApp; GoPet revisa si puede hacer el traslado y pasa el precio; si la propuesta le sirve, coordinan los detalles. El aviso final aclara que la consulta no confirma el traslado.
+La sección muestra tres pasos sin repetir los campos del formulario: la persona envía la consulta por WhatsApp; PetWay revisa si puede hacer el traslado y pasa el precio; si la propuesta le sirve, coordinan los detalles. El aviso final aclara que la consulta no confirma el traslado.
 
 Cada texto tendrá responsable, fecha de revisión y enlace a su fuente. Los mensajes de anuncios y publicaciones se gestionan en [Marketing](../05-marketing/README.md).

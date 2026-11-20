@@ -174,7 +174,7 @@ if (routeStage) {
   });
 
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  window.addEventListener('gopet:navigation-end', scheduleUpdate);
+  window.addEventListener('petway:navigation-end', scheduleUpdate);
   window.addEventListener('resize', measure);
   compact.addEventListener('change', setGeometry);
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(pin);

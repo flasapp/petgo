@@ -1,5 +1,5 @@
 {
-  "name": "gopet-web",
+  "name": "petway-web",
   "private": true,
   "type": "module",
   "scripts": {

@@ -226,7 +226,7 @@ if (tripDialog) {
     loader.innerHTML = `
       <div class="trip-loader-heading">
         <strong>Estamos trazando tu recorrido</strong>
-        <span>GoPet en camino</span>
+        <span>PetWay en camino</span>
       </div>
       <div class="trip-loader-scene" aria-hidden="true">
         <span class="trip-loader-sun"></span>

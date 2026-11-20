@@ -8,12 +8,12 @@ Aquí viven **la estrategia de marca y sus decisiones de identidad**. El diseño
 - [Dirección visual verde pastel](direccion-visual-verde-pastel.md): rumbo actual confirmado y paleta de trabajo.
 - [Referencias visuales](referencias/README.md): ocho capturas aportadas y rasgos que inspiran el sitio.
 - [Propuestas de paleta anteriores](propuestas-paleta-y-estilo.md): historial de exploración.
-- [Activos de marca](activos/README.md): propuesta actual de logo GoPet en PNG transparente y fotografías del vehículo.
+- [Activos de marca](activos/README.md): propuesta actual de logo PetWay en PNG transparente y fotografías del vehículo.
 - [Decisiones de marca](decisiones.md).
 
 ## Temas a desarrollar
 
-- Comprobar GoPet: recordación, pronunciación, disponibilidad del dominio, perfiles sociales y posibles conflictos de uso.
+- Comprobar PetWay: recordación, pronunciación, disponibilidad del dominio, perfiles sociales y posibles conflictos de uso.
 - Promesa de marca sustentada en un servicio que realmente pueda cumplirse.
 - Personalidad, voz y mensajes para distintos canales.
 - Revisar el [logo propuesto](activos/logo/README.md), sus variantes, la paleta, tipografías, fotografía e iconografía.

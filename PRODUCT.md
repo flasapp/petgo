@@ -23,7 +23,7 @@ El emprendimiento dispone de una Fiat Strada gris claro con cúpula gris oscuro 
 - Cobertura general prevista: Montevideo y viajes al interior de Uruguay. Rutas, horarios, disponibilidad, condiciones de admisión y precios siguen abiertos.
 - Capacidad máxima declarada por el emprendedor: hasta 2 perros en caniles separados y 2 gatos en sus transportines en un mismo traslado. Siguen pendientes los límites por tamaño y las condiciones de admisión.
 - La acción principal abre WhatsApp en el número del emprendimiento (`099553986`, Uruguay; `+59899553986` en formato internacional). Los botones de las tarjetas de Montevideo e Interior abren un formulario que prepara un mensaje con los datos del viaje y pregunta por disponibilidad y precio. WhatsApp muestra el mensaje para que la persona lo envíe; la web no confirma una reserva. El proceso de cotización y confirmación sigue abierto.
-- El nombre comercial de trabajo es **GoPet**, elegido el 2026-11-19 porque el dominio del nombre anterior estaba en uso. Rechazó la primera propuesta vectorial y pidió un logo PNG transparente que muestre traslado y mascotas. El logo actual muestra una camioneta, un perro y un gato; falta comprobar la disponibilidad registral y digital de GoPet y aprobar el diseño final. La fecha de lanzamiento sigue pendiente.
+- El nombre comercial de trabajo es **PetWay**, elegido el 2026-11-20. Rechazó la primera propuesta vectorial y pidió un logo PNG transparente que muestre traslado y mascotas. El logo actual muestra una camioneta, un perro y un gato; falta comprobar la disponibilidad registral y digital de PetWay y aprobar el diseño final. La fecha de lanzamiento sigue pendiente.
 
 ## Compromisos de marca
 

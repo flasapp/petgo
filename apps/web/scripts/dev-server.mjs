@@ -223,6 +223,6 @@ createServer(async (request, response) => {
     response.writeHead(error.code === 'ENOENT' || error.code === 'EISDIR' ? 404 : 500).end();
   }
 }).listen(port, host, () => {
-  console.log(`GoPet disponible en http://${host}:${port}`);
+  console.log(`PetWay disponible en http://${host}:${port}`);
   if (!googleKey) console.warn('Google Maps desactivado: pegá la clave en .env y reiniciá el servidor.');
 });

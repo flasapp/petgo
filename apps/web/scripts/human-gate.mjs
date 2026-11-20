@@ -19,7 +19,7 @@ export async function verifyTurnstile(token, secret, hostname, fetcher = fetch) 
 export function createHumanGate(now = Date.now) {
   const sessions = new Map();
   function session(request) {
-    const id = request.headers.cookie?.match(/(?:^|;\s*)gopet_human=([a-f0-9]{48})(?:;|$)/)?.[1];
+    const id = request.headers.cookie?.match(/(?:^|;\s*)petway_human=([a-f0-9]{48})(?:;|$)/)?.[1];
     const entry = id && sessions.get(id);
     if (!entry) return null;
     if (entry.expires <= now()) {
@@ -33,7 +33,7 @@ export function createHumanGate(now = Date.now) {
       for (const [id, entry] of sessions) if (entry.expires <= now()) sessions.delete(id);
       const id = randomBytes(24).toString('hex');
       sessions.set(id, { expires: now() + SESSION_MS, autocomplete: 0, estimate: 0 });
-      response.setHeader('Set-Cookie', `gopet_human=${id}; Max-Age=600; Path=/api/; HttpOnly; SameSite=Strict`);
+      response.setHeader('Set-Cookie', `petway_human=${id}; Max-Age=600; Path=/api/; HttpOnly; SameSite=Strict`);
     },
     consume(request, kind) {
       const entry = session(request);

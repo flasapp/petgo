@@ -3,7 +3,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Keep a margin below the applicable Google Cloud quotas.
-export const quotaFilename = fileURLToPath(new URL('../.gopet-local/google-usage.json', import.meta.url));
+export const quotaFilename = fileURLToPath(new URL('../.petway-local/google-usage.json', import.meta.url));
 
 export function createQuotaStore(path, limit) {
   let queue = Promise.resolve();

@@ -18,7 +18,7 @@ COPY public ./public
 COPY scripts ./scripts
 COPY data ./data
 
-RUN mkdir -p /app/.gopet-local && chown -R node:node /app
+RUN mkdir -p /app/.petway-local && chown -R node:node /app
 USER node
 
 EXPOSE 5173

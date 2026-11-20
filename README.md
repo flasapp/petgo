@@ -1,6 +1,6 @@
-# GoPet · traslado de mascotas
+# PetWay · traslado de mascotas
 
-Espacio de trabajo para planificar y desarrollar GoPet, un emprendimiento de traslado de mascotas con una Fiat Strada. La disponibilidad registral y digital del nombre todavía debe comprobarse.
+Espacio de trabajo para planificar y desarrollar PetWay, un emprendimiento de traslado de mascotas con una Fiat Strada. La disponibilidad registral y digital del nombre todavía debe comprobarse.
 
 La documentación vive en [docs/README.md](docs/README.md). Para continuar la conversación, conviene empezar por [las preguntas prioritarias](docs/00-coordinacion/preguntas-prioritarias.md).
 

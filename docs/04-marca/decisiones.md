@@ -28,10 +28,15 @@ Registro de decisiones sobre nombre, posicionamiento, tono, logo, paleta, tipogr
 - Consecuencias: [archivos PNG actuales](activos/logo/README.md) e integración en la maqueta web.
 - Próxima revisión: confirmar que el concepto visual gusta, comprobar su lectura en tamaños de uso y evaluar reproducción en formatos grandes antes de rotular la camioneta.
 
-## 2026-11-19 · Cambio de nombre a GoPet
+## 2026-11-19 · Nombre de trabajo anterior
 
-- Estado: nombre de trabajo elegido por el emprendedor; disponibilidad registral y digital de GoPet pendiente de comprobación.
-- Decisión: sustituir el nombre anterior por **GoPet** en la web, la documentación, los identificadores internos y los recursos gráficos. Conservar la camioneta, el perro y el gato del logo, con un nuevo rótulo horizontal transparente.
-- Motivo y evidencia: el emprendedor informó que el dominio del nombre anterior estaba en uso y pidió el cambio en todo el proyecto.
+- Estado: sustituido al día siguiente; se conserva esta nota para mantener la secuencia de decisiones sin usar el nombre descartado en las piezas vigentes.
+- Motivo y evidencia: el emprendedor informó que el dominio de la propuesta previa estaba en uso y pidió un cambio en todo el proyecto.
+
+## 2026-11-20 · Cambio de nombre a PetWay
+
+- Estado: nombre de trabajo elegido por el emprendedor; disponibilidad registral y digital de PetWay pendiente de comprobación.
+- Decisión: sustituir el nombre anterior por **PetWay** en la web, la documentación, los identificadores internos y los recursos gráficos. Conservar la camioneta, el perro y el gato del logo, con un nuevo rótulo horizontal transparente.
+- Motivo y evidencia: el emprendedor pidió cambiar todas las referencias del nombre de trabajo anterior por PetWay.
 - Consecuencias: [logo actualizado](activos/logo/README.md), rutas de recursos y carpeta del contador local con el nuevo nombre. La propuesta vectorial descartada se retiró del árbol de trabajo y sigue disponible en el historial de Git.
 - Próxima revisión: comprobar disponibilidad del dominio elegido, perfiles sociales y marca antes de publicar o rotular el vehículo.
