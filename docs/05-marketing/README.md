@@ -5,6 +5,7 @@ Aquí se planifica **cómo se conoce, evalúa y contrata el servicio**. Las cond
 ## Documentos iniciales
 
 - [Estrategia y canales](estrategia-y-canales.md): público, mensajes, Google, redes y presencia local.
+- [Perfil de Instagram PetWay](instagram-petway.md): propuesta de foto, nombre, biografía y contacto para `@petway.uy`.
 - [Contenidos y campañas](contenidos-y-campanas.md): piezas, calendario y aprendizajes.
 - [Métricas comerciales](metricas.md): consultas, reservas y rendimiento por canal.
 - [Decisiones de marketing](decisiones.md).

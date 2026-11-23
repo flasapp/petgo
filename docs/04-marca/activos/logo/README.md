@@ -20,6 +20,12 @@ La imagen muestra una camioneta compacta con cúpula, un perro y un gato visible
 
 Todos los archivos de logo vigentes son **PNG con transparencia real**. El concepto vectorial anterior fue rechazado y puede recuperarse desde el historial de Git; no debe utilizarse.
 
+## Propuesta de avatar para Instagram
+
+![Avatar propuesto para Instagram](petway-instagram-avatar.png)
+
+[`petway-instagram-avatar.png`](petway-instagram-avatar.png) es una variante cuadrada de 1254 × 1254 px, con fondo blanco cálido y círculo menta. Incluye el nombre **PetWay** debajo de la camioneta, dentro del recorte circular del perfil. Agranda las caras del perro y el gato para mejorar la lectura en tamaño pequeño. La [versión sin nombre](petway-instagram-avatar-sin-nombre.png) se conserva como alternativa. **La composición final está pendiente de aprobación** y no reemplaza los PNG transparentes anteriores.
+
 ## Uso inicial
 
 - Utilizar el horizontal cuando el nombre pueda leerse; reservar el icono para perfiles y espacios cuadrados.

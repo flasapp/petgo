@@ -21,8 +21,11 @@ const mimeTypes = {
   '.css': 'text/css; charset=utf-8',
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  '.jpg': 'image/jpeg',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 function json(response, status, value) {
@@ -199,6 +202,12 @@ createServer(async (request, response) => {
     return;
   }
 
+  if (pathname === '/index.html') {
+    const search = new URL(request.url, 'http://localhost').search;
+    response.writeHead(308, { Location: `/${search}`, 'Cache-Control': 'no-store' }).end();
+    return;
+  }
+
   const file = resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
   if (file !== root && !file.startsWith(root + sep)) {
     response.writeHead(403).end();
@@ -216,7 +225,9 @@ createServer(async (request, response) => {
       : await readFile(file);
     response.writeHead(200, {
       'Content-Type': mimeTypes[extname(file)] || 'application/octet-stream',
-      'Cache-Control': 'no-store',
+      'Cache-Control': file === resolve(root, 'index.html') ? 'no-store'
+        : /-[a-f0-9]{8}\.webp$/.test(file) ? 'public, max-age=31536000, immutable'
+          : 'public, max-age=3600',
     });
     response.end(request.method === 'HEAD' ? undefined : content);
   } catch (error) {

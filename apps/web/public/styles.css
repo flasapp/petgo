@@ -119,29 +119,21 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .vehicle-lines { border-top: 1px solid #b7cdbd; margin-top: 31px; }
 .vehicle-lines p { padding: 18px 0; margin: 0; border-bottom: 1px solid #b7cdbd; }
 .vehicle-lines strong { color: var(--action); }
-.photo-collection { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; min-width: 0; }
-.photo-placeholder { display: flex; flex-direction: column; justify-content: flex-end; min-height: 180px; padding: 22px; border: 2px dashed #8ca99a; border-radius: 19px; background: #dae7de; color: var(--ink); }
-.photo-placeholder span { font-family: var(--display); font-size: 22px; font-weight: 700; line-height: 1.08; }
-.photo-placeholder small { margin-top: 5px; font-size: 12px; font-weight: 800; }
+.photo-collection { min-width: 0; }
 .photo-main { grid-column: 1 / -1; min-height: 300px; background: #e2ebe5; }
 .vehicle-photo { position: relative; margin: 0; overflow: hidden; padding: 7px; border: 2px dashed #96a39c; border-radius: 19px; aspect-ratio: 16 / 9; }
 .vehicle-photo img { display: block; width: 100%; height: 100%; border-radius: 12px; object-fit: cover; object-position: center; }
 .vehicle-photo figcaption { position: absolute; z-index: 2; left: 24px; bottom: 24px; padding: 7px 13px; border-radius: 24px; background: rgba(250,252,248,.94); color: var(--ink); font-size: 12px; font-weight: 800; box-shadow: 0 5px 16px rgba(36,58,49,.1); }
-.vehicle-photo.photo-detail { border-color: #8ca99a; }
-.photo-detail { background: #d6e9db; }
-.photo-detail:last-child { background: #e5e3ed; }
 
 .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-copy h2,
 .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-copy > p,
 .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-lines p,
 .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-photo,
-.vehicle-section.is-motion-ready:not(.is-in-view) .photo-placeholder,
 .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-photo figcaption { opacity: 0; transform: translate3d(0, 28px, 0); }
 .vehicle-section.is-motion-ready.is-in-view .vehicle-copy h2,
 .vehicle-section.is-motion-ready.is-in-view .vehicle-copy > p,
 .vehicle-section.is-motion-ready.is-in-view .vehicle-lines p,
 .vehicle-section.is-motion-ready.is-in-view .vehicle-photo,
-.vehicle-section.is-motion-ready.is-in-view .photo-placeholder,
 .vehicle-section.is-motion-ready.is-in-view .vehicle-photo figcaption {
   animation: vehicle-part-enter .74s cubic-bezier(.16, 1, .3, 1) var(--vehicle-delay, 0s) both;
 }
@@ -149,10 +141,7 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .vehicle-section.is-in-view .vehicle-lines p:first-child { --vehicle-delay: .29s; }
 .vehicle-section.is-in-view .vehicle-lines p:last-child { --vehicle-delay: .44s; }
 .vehicle-section.is-in-view .photo-main { --vehicle-delay: .22s; }
-.vehicle-section.is-in-view .vehicle-photo.photo-detail { --vehicle-delay: .59s; }
-.vehicle-section.is-in-view .photo-placeholder { --vehicle-delay: .73s; }
 .vehicle-section.is-in-view .photo-main figcaption { --vehicle-delay: .78s; }
-.vehicle-section.is-in-view .vehicle-photo.photo-detail figcaption { --vehicle-delay: 1.04s; }
 @keyframes vehicle-part-enter {
   from { opacity: 0; transform: translate3d(0, 28px, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -207,6 +196,9 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .contact-section p { max-width: 530px; margin-bottom: 23px; font-size: 18px; }
 .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .contact-actions .button { padding: 16px 23px; }
+.contact-section .contact-channels { max-width: none; margin: 18px 0 0; font-size: 15px; }
+.contact-channels a { font-weight: 800; }
+.contact-channels a:focus-visible { outline-color: white; }
 .button-contact-outline { border: 1px solid rgba(255,255,255,.8); background: transparent; color: white; box-shadow: none; }
 .button-contact-outline:hover { background: rgba(255,255,255,.12); box-shadow: none; }
 .footer { display: grid; grid-template-columns: 1fr auto; gap: 35px 45px; padding-block: 58px 32px; }
@@ -215,7 +207,8 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
 .footer nav { display: flex; gap: 25px; align-self: start; }
 .footer nav a { font-weight: 800; text-decoration: none; }
 .footer-socials { grid-column: 1 / -1; display: flex; gap: 12px; padding-top: 23px; border-top: 1px solid var(--line); }
-.footer-social-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--mist); color: var(--action); }
+.footer-social-icon { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 50%; background: var(--mist); color: var(--action); text-decoration: none; }
+.footer-social-icon:hover { background: #d1eddd; }
 .footer-social-icon svg { width: 21px; height: 21px; }
 @keyframes menu-reveal { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes menu-item-reveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
@@ -423,10 +416,7 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .journey-card { min-height: 0; }
   .journey-content { padding: 29px 25px 32px; }
   .journey-content h3 { font-size: 29px; }
-  .photo-placeholder { min-height: 140px; padding: 13px; }
   .photo-main { min-height: 210px; }
-  .photo-placeholder span { font-size: 18px; }
-  .photo-placeholder small { font-size: 11px; }
   .steps { display: block; margin-top: 42px; }
   .steps::before { top: 25px; bottom: 25px; left: 30px; right: auto; border-top: 0; border-left: 4px dotted #a9c7b5; }
   .steps li { display: grid; grid-template-columns: 60px 1fr; gap: 0 18px; margin-bottom: 31px; text-align: left; }
@@ -490,13 +480,11 @@ html.is-nav-bypassing-route .route-feature.is-scroll-ready .route-pin { position
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-copy > p,
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-lines p,
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-photo,
-  .vehicle-section.is-motion-ready:not(.is-in-view) .photo-placeholder,
   .vehicle-section.is-motion-ready:not(.is-in-view) .vehicle-photo figcaption { transform: translate3d(0, 14px, 0); }
   .vehicle-section.is-motion-ready.is-in-view .vehicle-copy h2,
   .vehicle-section.is-motion-ready.is-in-view .vehicle-copy > p,
   .vehicle-section.is-motion-ready.is-in-view .vehicle-lines p,
   .vehicle-section.is-motion-ready.is-in-view .vehicle-photo,
-  .vehicle-section.is-motion-ready.is-in-view .photo-placeholder,
   .vehicle-section.is-motion-ready.is-in-view .vehicle-photo figcaption { animation-name: vehicle-part-enter-gentle; animation-duration: .66s; }
   .route-stage.is-complete .arrival-ring { animation: none; }
 }
