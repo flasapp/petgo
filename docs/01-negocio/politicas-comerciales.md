@@ -1,6 +1,6 @@
 # Políticas comerciales
 
-Estado: **Borrador de temas; ninguna política está aprobada**.
+Estado: **Borrador de temas; solo los medios de pago están confirmados**.
 
 Este documento definirá las condiciones que se comunican antes de cada reserva. Los textos públicos se redactarán después de decidir las reglas y revisar los asuntos legales aplicables.
 
@@ -22,7 +22,8 @@ Este documento definirá las condiciones que se comunican antes de cada reserva.
 
 ## Cobro y atención
 
-- Medios de pago aceptados, seña, momento de pago y comprobante.
+- Medios de pago aceptados: transferencia bancaria y Mercado Pago (confirmados el 2026-11-23).
+- Seña, momento de pago y comprobante: por definir.
 - Reembolsos y cargos adicionales comunicados antes de prestar el servicio.
 - Canal y plazo para reclamos, objetos olvidados y seguimiento posterior.
 

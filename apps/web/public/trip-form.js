@@ -15,6 +15,7 @@ if (tripDialog) {
   const returnOther = form.querySelector('#trip-return-other');
   const returnField = form.querySelector('[data-return-field]');
   const returnInput = form.querySelector('#trip-return');
+  const instagramFollower = form.querySelector('#trip-instagram-follower');
   const result = tripDialog.querySelector('[data-trip-result]');
   const resultTitle = tripDialog.querySelector('[data-trip-result-title]');
   const messagePreview = tripDialog.querySelector('[data-trip-message]');
@@ -350,9 +351,30 @@ if (tripDialog) {
     const price = document.createElement('section');
     price.className = 'trip-quote-price';
     const priceTitle = document.createElement('h4');
+    const followerDiscount = instagramFollower.checked;
+    const basePrice = data.sale?.priceUYU;
+    const quotedPrice = followerDiscount && Number.isFinite(basePrice) ? Math.round(basePrice * 0.9) : basePrice;
     priceTitle.textContent = data.sale ? 'Precio estimado del viaje' : 'Precio del viaje';
+    if (followerDiscount && Number.isFinite(basePrice)) {
+      const originalPrice = document.createElement('span');
+      originalPrice.className = 'trip-quote-original-price';
+      originalPrice.textContent = `Antes: $${moneyFormatter.format(basePrice)} UYU`;
+      price.append(priceTitle, originalPrice);
+    } else {
+      price.append(priceTitle);
+    }
     const priceValue = document.createElement('strong');
-    priceValue.textContent = data.sale ? `$${moneyFormatter.format(data.sale.priceUYU)} UYU` : 'A confirmar';
+    priceValue.textContent = data.sale ? `$${moneyFormatter.format(quotedPrice)} UYU` : 'A confirmar';
+    if (followerDiscount) {
+      const discountNote = document.createElement('span');
+      discountNote.className = 'trip-quote-discount';
+      discountNote.textContent = data.sale
+        ? `10% de descuento por seguir a @petway.uy · Ahorrás $${moneyFormatter.format(basePrice - quotedPrice)} UYU`
+        : '10% de descuento por seguir a @petway.uy, a aplicar sobre el precio confirmado';
+      price.append(priceValue, discountNote);
+    } else {
+      price.append(priceValue);
+    }
     const priceQuestion = document.createElement('p');
     priceQuestion.textContent = data.sale
       ? '¿Te sirve este precio aproximado?'
@@ -364,7 +386,7 @@ if (tripDialog) {
     priceWhatsapp.target = '_blank';
     priceWhatsapp.rel = 'noopener noreferrer';
     priceWhatsapp.dataset.tripWhatsappPrimary = '';
-    price.append(priceTitle, priceValue, priceQuestion, priceWhatsapp);
+    price.append(priceQuestion, priceWhatsapp);
     quote.append(price);
 
     const route = document.createElement('section');
@@ -618,15 +640,21 @@ if (tripDialog) {
       `Ida y vuelta: ${roundTrip.value === 'yes' ? 'Sí' : 'No'}`,
       ...(roundTrip.value === 'yes' ? [`Espera: 60 minutos incluidos${extraWaitMinutes ? ` + ${extraWaitMinutes} minutos extra` : ''}`] : []),
       ...(roundTrip.value === 'yes' && returnOther.checked ? [`Destino final de la vuelta: ${returnInput.value.trim()}`] : []),
-      // TODO: definir y aplicar el descuento para seguidores de Instagram en la futura tarifa al cliente.
+      ...(instagramFollower.checked ? ['Sigo a @petway.uy en Instagram y solicito el 10% de descuento.'] : []),
     ];
     const updateSummary = (priceUYU) => {
+      const discountedPrice = instagramFollower.checked && Number.isFinite(priceUYU)
+        ? Math.round(priceUYU * 0.9)
+        : priceUYU;
       summary.value = [
         ...messageLines,
-        ...(Number.isFinite(priceUYU) ? [`Precio aproximado: $${moneyFormatter.format(priceUYU)} UYU.`] : []),
+        ...(Number.isFinite(priceUYU) && instagramFollower.checked ? [`Precio estimado sin descuento: $${moneyFormatter.format(priceUYU)} UYU.`] : []),
+        ...(Number.isFinite(discountedPrice) ? [`Precio aproximado${instagramFollower.checked ? ' con descuento' : ''}: $${moneyFormatter.format(discountedPrice)} UYU.`] : []),
         Number.isFinite(priceUYU)
           ? '¿Tienen disponibilidad y me confirman este precio?'
-          : '¿Tienen disponibilidad para este viaje? ¿Cuánto cuesta?',
+          : instagramFollower.checked
+            ? '¿Tienen disponibilidad y me cotizan este viaje con el descuento?'
+            : '¿Tienen disponibilidad para este viaje? ¿Cuánto cuesta?',
       ].join('\n');
       whatsappLink.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(summary.value)}`;
       const priceWhatsapp = fuelResult.querySelector('[data-trip-whatsapp-primary]');

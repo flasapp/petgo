@@ -14,7 +14,7 @@ precio_Montevideo = 5 × techo(máximo(600, costo_total × 1,30) / 5)
 
 En ida y vuelta, el formulario incluye **60 minutos de espera en la cotización** y pide solamente los minutos adicionales. Para el cálculo, `minutos_de_espera = 60 + minutos_adicionales`. Toda esa espera entra en el costo de mano de obra: la primera hora está incluida en el precio del viaje, sin un cargo separado, y los minutos adicionales aumentan el costo calculado. El precio final se redondea **hacia arriba al siguiente múltiplo de UYU 5**; no se redondean los componentes antes de aplicar el 30 % y el mínimo. La carga y descarga no forman parte del tiempo estimado por Google ni del costo de mano de obra calculado.
 
-El porcentaje del **interior** y la inclusión de peajes siguen pendientes; por eso esos viajes conservan la consulta manual. El descuento para seguidores de Instagram también queda pendiente. En todos los casos la disponibilidad y el importe se confirman por WhatsApp.
+El porcentaje del **interior** y la inclusión de peajes siguen pendientes; por eso esos viajes conservan la consulta manual. Quienes indiquen que siguen a **@petway.uy en Instagram** reciben un **10 % de descuento** sobre el precio estimado de Montevideo, después de aplicar la fórmula y el redondeo a UYU 5; el importe con descuento se redondea al peso más cercano. Para viajes sin precio automático, el descuento se solicita en la consulta. En todos los casos el seguimiento, la disponibilidad y el importe final se confirman por WhatsApp.
 
 ## Cantidad de mascotas
 
@@ -36,4 +36,4 @@ Antes de aceptar un viaje, el cliente debe poder conocer el precio total o las c
 
 ## Pendientes de decisión
 
-Porcentaje del interior, peajes, gastos del vehículo aún no medidos, carga y descarga, vigencia de cotizaciones, descuentos y condiciones especiales. Los valores aprobados se anotarán aquí con fecha de vigencia y versión de la tabla de precios.
+Porcentaje del interior, peajes, gastos del vehículo aún no medidos, carga y descarga, vigencia de cotizaciones y otros descuentos o condiciones especiales. Los valores aprobados se anotarán aquí con fecha de vigencia y versión de la tabla de precios.

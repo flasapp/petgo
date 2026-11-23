@@ -7,16 +7,52 @@
     <meta name="description" content="Traslados de perros y gatos en Montevideo. Contanos el origen, el destino y la fecha; en PetWay confirmamos disponibilidad y precio antes de coordinar el viaje." />
     <title>Traslados de mascotas en Montevideo | PetWay</title>
     <link rel="canonical" href="https://petway.flasap.com.uy/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:site_name" content="PetWay" />
+    <meta property="og:title" content="Traslados de mascotas en Montevideo | PetWay" />
+    <meta property="og:description" content="Traslados de perros y gatos en Montevideo. Conocé cómo viajan y consultanos por tu recorrido." />
+    <meta property="og:url" content="https://petway.flasap.com.uy/" />
+    <meta property="og:image" content="https://petway.flasap.com.uy/assets/vehiculo-petway-editado.jpg" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
+    <meta property="og:image:alt" content="Camioneta de PetWay para traslados de mascotas" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://petway.flasap.com.uy/#organizacion",
+            "name": "PetWay",
+            "url": "https://petway.flasap.com.uy/",
+            "logo": "https://petway.flasap.com.uy/assets/petway-horizontal.png",
+            "email": "petwayuy@gmail.com",
+            "sameAs": ["https://www.instagram.com/petway.uy/"]
+          },
+          {
+            "@type": "Service",
+            "@id": "https://petway.flasap.com.uy/#traslado-mascotas",
+            "name": "Traslados de mascotas en Montevideo",
+            "serviceType": "Traslado de perros y gatos",
+            "provider": { "@id": "https://petway.flasap.com.uy/#organizacion" },
+            "areaServed": { "@type": "AdministrativeArea", "name": "Montevideo, Uruguay" },
+            "url": "https://petway.flasap.com.uy/"
+          }
+        ]
+      }
+    </script>
     <link rel="icon" type="image/png" href="assets/petway-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="vendor/flatpickr/flatpickr.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20261123" />
     <script src="script.js" defer></script>
     <script src="vendor/flatpickr/flatpickr.min.js" defer></script>
     <script src="vendor/flatpickr/es.js" defer></script>
-    <script src="trip-form.js" defer></script>
+    <script src="trip-form.js?v=20261123" defer></script>
     <script src="route-animation.js" defer></script>
   </head>
   <body data-whatsapp-number="__WHATSAPP_NUMBER__" data-check-is-human="__CHECK_IS_HUMAN__" data-enable-map="__ENABLE_MAP__" data-enable-message="__ENABLE_MESSAGE__" data-turnstile-site-key="__TURNSTILE_SITE_KEY__">
@@ -162,13 +198,15 @@
 
       <section class="section faq wrap" id="preguntas" aria-labelledby="faq-title">
         <div class="section-head centered">
-          <h2 id="faq-title">Información del <span>viaje</span></h2>
-          <p>Cómo viajan, qué necesitás preparar y cómo consultar un traslado.</p>
+          <h2 id="faq-title">Información <span>general</span></h2>
+          <p>Cómo viajan, cómo pagar y qué necesitás para consultar un traslado.</p>
         </div>
         <div class="faq-grid">
+          <details><summary>¿Cómo cotizo un traslado de mascotas en Montevideo?<span class="plus-icon" aria-hidden="true"></span></summary><p>Contanos el origen, el destino, la fecha, la hora y cuántas mascotas viajan. Revisamos la ruta y la disponibilidad y te confirmamos el precio antes de coordinar. La consulta no confirma el traslado.</p></details>
           <details><summary>¿Cuántas mascotas pueden viajar?<span class="plus-icon" aria-hidden="true"></span></summary><p>Podemos llevar hasta 2 perros y 2 gatos en un mismo viaje. Decinos cuántos viajan para preparar el espacio de cada uno.</p></details>
           <details><summary>¿Cómo viajan los perros y los gatos?<span class="plus-icon" aria-hidden="true"></span></summary><p>Los perros viajan en caniles separados y cerrados dentro de la cúpula, con ventilación. Cada gato viaja en su propio transportín, sujeto con el cinturón de seguridad en el asiento trasero. Tenés que traer el transportín de tu gato.</p></details>
           <details><summary>¿A dónde pueden viajar?<span class="plus-icon" aria-hidden="true"></span></summary><p>Hacemos traslados dentro de Montevideo y podés consultarnos por viajes al interior de Uruguay. Pasanos el origen, el destino, la fecha y la hora para confirmar si podemos hacer ese recorrido.</p></details>
+          <details><summary>¿Qué métodos de pago aceptan?<span class="plus-icon" aria-hidden="true"></span></summary><p>Aceptamos transferencia bancaria y Mercado Pago. Al coordinar el viaje, te indicamos cómo pagar con el medio que elijas.</p></details>
           <details><summary>¿La cantidad de mascotas cambia el precio?<span class="plus-icon" aria-hidden="true"></span></summary><p>No. Dentro del cupo de hasta 2 perros y 2 gatos, la cantidad no cambia el precio. Contanos los datos del viaje por WhatsApp y te informamos la disponibilidad y el precio antes de coordinarlo.</p></details>
         </div>
       </section>
@@ -266,6 +304,11 @@
             <div class="trip-suggestions" data-suggestions hidden></div>
             <small class="trip-error" id="trip-return-error" hidden>Indicá el destino final de la vuelta.</small>
           </div>
+        </div>
+        <div class="trip-instagram-offer">
+          <strong>10% de descuento si seguís a PetWay en Instagram</strong>
+          <label class="trip-check" for="trip-instagram-follower"><input id="trip-instagram-follower" name="instagramFollower" type="checkbox" /> Sigo a @petway.uy</label>
+          <p>Si todavía no nos seguís, <a href="https://www.instagram.com/petway.uy/" target="_blank" rel="noopener noreferrer">visitá nuestro Instagram</a>. Confirmamos el descuento al coordinar por WhatsApp.</p>
         </div>
         <div class="trip-form-footer">
           <button class="button" type="submit">Cotizar viaje</button>
